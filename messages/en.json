@@ -1,0 +1,39 @@
+{
+  "MetaDataGlobal": {
+    "keywords": "Custom workouts, Fitness program creator, Personalized training plans, Workout scheduler, Exercise routine maker, Online fitness architect, Gym program generator, Fitness plan control, Tailored workout schedules, Individualized exercise routines, powerpulse, PowerPulse, fit, fitness, workout, Workout, training, program"
+  },
+  "MetaDataMain": {
+    "title": "PowerPulse | Main",
+    "description": "PowerPulse is an innovative and free website that allows each user to create their own workout program that meets their unique needs"
+  },
+  "DeniedPage": {
+    "title": "Access denied",
+    "subTitle": "You dont have permissions to access this page",
+    "helpInfo": "Contact the administrator or owner to access this page",
+    "goToHome": "Back to main",
+    "MetaData": {
+      "title": "PowerPulse | Access denied"
+    }
+  },
+  "NotFoundPage": {
+    "title": "Whooops!",
+    "subTitle": "404! Page Not Found",
+    "helpInfo": "Looks like this page went on vacation",
+    "goToHome": "Back to main",
+    "MetaData": {
+      "title": "PowerPulse | Not Found"
+    }
+  },
+  "ErrorPage": {
+    "title": "Something went wrong! Try again later",
+    "goToHome": "Back to main"
+  },
+  "NavBar": {
+    "Exercises": "Exercises",
+    "Workouts": "Workouts"
+  },
+  "Global": {
+    "Login": "Log in",
+    "Register": "Register"
+  }
+}
