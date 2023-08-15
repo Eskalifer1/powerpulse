@@ -1,10 +1,7 @@
 import { DefaultUser } from "next-auth";
 import "next-auth/jwt";
 
-export enum Role {
-  user = "user",
-  admin = "admin",
-}
+export type Role = "admin" | "user";
 
 interface IUser extends DefaultUser {
   role?: Role;
