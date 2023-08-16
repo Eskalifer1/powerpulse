@@ -35,5 +35,18 @@
   "Global": {
     "Login": "Log in",
     "Register": "Register"
+  },
+  "HomePage": {
+    "HeroSection": {
+      "Title": "PowerPulse - your personal training assistant",
+      "Description": "Create, customize and monitor your workout lists with ease with PowerPulse. Regardless of your fitness level, you can reach new heights in your workout routine with our site. Mark your progress, customize your workouts to your needs, and reach your goals with us!"
+    },
+    "NavigationSection": {
+      "Title": "Navigation",
+      "CreateExcercises": "Create exercises",
+      "CreateWorkouts": "Create Workouts",
+      "GoToExcercises": "Get to excercises",
+      "GoToWorkouts": "Get to workout"
+    }
   }
 }

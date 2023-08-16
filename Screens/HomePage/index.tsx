@@ -1,5 +1,14 @@
+import HeroSection from "./HeroSection";
+import NavigationSection from "./NavigationSection";
+import { HomePageWrap } from "./style";
+
 const HomePageScreen = () => {
-  return <></>;
+  return (
+    <HomePageWrap>
+      <HeroSection />
+      <NavigationSection />
+    </HomePageWrap>
+  );
 };
 
 export default HomePageScreen;

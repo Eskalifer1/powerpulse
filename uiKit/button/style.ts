@@ -3,13 +3,13 @@
 import { SizeType } from "@/types/SizeType";
 import styled from "styled-components";
 
-interface PropsType {
+export interface DefaultButtonPropsType {
   $marginTop?: string;
   $type: "primary" | "secondary";
   $size: SizeType;
 }
 
-export const DefaultButton = styled.button<PropsType>`
+export const DefaultButton = styled.button<DefaultButtonPropsType>`
   border-radius: 0.5rem;
   padding: ${(props) =>
     props.$size === "sm"
