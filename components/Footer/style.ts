@@ -16,8 +16,9 @@ export const SocialLinksOutsideWrap = styled.div`
 `;
 
 export const SocialBlockLink = styled(Link)`
-  :hover {
+  &:hover {
     color: var(--text-color);
+    opacity: 0.7;
   }
 `;
 
