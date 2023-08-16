@@ -20,7 +20,7 @@ const HeroSection = () => {
           alt="Workout Hero"
           fill
           priority
-          sizes="(max-width: 1200px) 100vw, 1200px"
+          sizes="95vw"
           placeholder="blur"
           objectFit="cover"
         />

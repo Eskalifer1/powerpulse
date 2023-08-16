@@ -22,7 +22,7 @@ const SideMenuBlock: FC<PropsType> = ({ items }) => {
       <SideMenuList>
         {items.map((item) => (
           <SideMenuItem key={item.name}>
-            <SideMenuLink href={item.href}>
+            <SideMenuLink href={item.href} aria-label={item.name}>
               <SideMenuIcon>{item.icon}</SideMenuIcon>
               <SideMenuTitle>{t(item.name)}</SideMenuTitle>
             </SideMenuLink>
