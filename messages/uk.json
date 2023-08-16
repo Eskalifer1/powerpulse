@@ -36,6 +36,9 @@
     "Login": "Вхід",
     "Register": "Реєстрація"
   },
+  "Footer": {
+    "Title": "Зробив {firstName} та {secondName}"
+  },
   "HomePage": {
     "HeroSection": {
       "Title": "PowerPulse - Ваш особистий тренувальний помічник",

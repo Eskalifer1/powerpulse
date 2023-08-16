@@ -58,8 +58,10 @@ body {
 body {
   color: var(--text-color);
   background: var(--background-color);
-  display: flex;
   padding-right: var(--body-padding);
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 a {

@@ -36,6 +36,9 @@
     "Login": "Log in",
     "Register": "Register"
   },
+  "Footer": {
+    "Title": "Created by {firstName} and {secondName}"
+  },
   "HomePage": {
     "HeroSection": {
       "Title": "PowerPulse - your personal training assistant",

@@ -21,7 +21,7 @@ export const SideMenu = () => {
         <MarginBlock $marginTop="3rem">
           <LocaleSwitcher />
         </MarginBlock>
-        <HorizontalLine $type="primary" />
+        <HorizontalLine $type="primary" $marginTop="1rem" $height="3px" />
         <MarginBlock $marginTop="2rem">
           <SideMenuBlock items={nvaItems}></SideMenuBlock>
         </MarginBlock>

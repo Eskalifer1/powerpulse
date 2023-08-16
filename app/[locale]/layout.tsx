@@ -1,6 +1,8 @@
+import Footer from "@/components/Footer";
 import { SideMenu } from "@/components/SideMenu";
 import StyledComponentsRegistry from "@/lib/StyledComponentRegistry";
 import AuthProvider from "@/providers/AuthProvider";
+import { Spacer } from "@/uiKit/Spacer/style";
 import { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslator } from "next-intl/server";
@@ -39,10 +41,6 @@ export default async function RootLayout({
   let messages;
   try {
     messages = (await import(`../../messages/${locale}.json`)).default;
-    // let messages2 = (await import(`../../messages/${locale}.json`)).then(
-    //   (module: any) => module.default
-    // );
-    // console.log(messages2);
   } catch (error) {
     notFound();
   }
@@ -59,6 +57,8 @@ export default async function RootLayout({
             <body className={poppins.className}>
               <SideMenu />
               {children}
+              <Spacer $size="2rem" />
+              <Footer />
             </body>
           </NextIntlClientProvider>
         </StyledComponentsRegistry>
