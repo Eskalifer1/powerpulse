@@ -23,7 +23,7 @@ export const SideMenu = () => {
         </MarginBlock>
         <HorizontalLine $type="primary" $marginTop="1rem" $height="3px" />
         <MarginBlock $marginTop="2rem">
-          <SideMenuBlock items={nvaItems}></SideMenuBlock>
+          <SideMenuBlock items={nvaItems} />
         </MarginBlock>
         <div id="isCollapsed" data-collapsed="true"></div>
         <UserInfo />

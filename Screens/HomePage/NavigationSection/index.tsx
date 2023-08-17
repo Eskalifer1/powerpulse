@@ -1,9 +1,10 @@
 import LinkButton from "@/components/LinkButton";
+import { LinkEnum } from "@/utils/enum/links";
 import { useTranslations } from "next-intl";
 import {
-    NavigationSectionButtonsWrap,
-    NavigationSectionTitle,
-    NavigationSectionWrap,
+  NavigationSectionButtonsWrap,
+  NavigationSectionTitle,
+  NavigationSectionWrap,
 } from "./style";
 
 const NavigationSection = () => {
@@ -13,16 +14,20 @@ const NavigationSection = () => {
     <NavigationSectionWrap>
       <NavigationSectionTitle>{t("Title")}</NavigationSectionTitle>
       <NavigationSectionButtonsWrap>
-        <LinkButton href="/workout" $type="primary" $size="md">
+        <LinkButton href={LinkEnum.WORKOUT} $type="primary" $size="md">
           {t("GoToWorkouts")}
         </LinkButton>
-        <LinkButton href="/excercises" $type="secondary" $size="md">
+        <LinkButton href={LinkEnum.EXCERICES} $type="secondary" $size="md">
           {t("GoToExcercises")}
         </LinkButton>
-        <LinkButton href="/workout/create" $type="primary" $size="md">
+        <LinkButton href={LinkEnum.WORKOUT_CREATE} $type="primary" $size="md">
           {t("CreateWorkouts")}
         </LinkButton>
-        <LinkButton href="/excercises/create" $type="secondary" $size="md">
+        <LinkButton
+          href={LinkEnum.EXCERICES_CREATE}
+          $type="secondary"
+          $size="md"
+        >
           {t("CreateExcercises")}
         </LinkButton>
       </NavigationSectionButtonsWrap>

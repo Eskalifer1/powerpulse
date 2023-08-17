@@ -1,6 +1,5 @@
 "use client";
 
-import LinkButton from "@/components/LinkButton";
 import { SignUpFormType } from "@/types/Forms/SignUpForm";
 import { Input, InputErrorText } from "@/uiKit/Input/style";
 import { DefaultButton } from "@/uiKit/button/style";
@@ -52,14 +51,9 @@ const SignUpForm = () => {
         <InputErrorText>{t(errors.confirmPassword.message)}</InputErrorText>
       )}
       <SignUpButtonsWrap>
-        <LinkButton
-          $type="secondary"
-          $size="md"
-          href="/signin"
-          onClick={() => signIn()}
-        >
+        <DefaultButton $type="secondary" $size="md" onClick={() => signIn()}>
           {t("Login")}
-        </LinkButton>
+        </DefaultButton>
         <DefaultButton $type="primary" $size="md" type="submit">
           {t("Register")}
         </DefaultButton>
