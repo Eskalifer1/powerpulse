@@ -9,7 +9,7 @@ export const BlackOpacitySideBarBackground = styled.div`
   right: 0;
   bottom: 0;
   height: var(--height-screen);
-  width: 100dvw;
+  width: 100vw;
   background-color: rgb(0, 0, 0, 0.5);
   z-index: -1;
 `;

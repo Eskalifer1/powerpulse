@@ -51,5 +51,26 @@
       "GoToExcercises": "Get to excercises",
       "GoToWorkouts": "Get to workout"
     }
+  },
+  "SignUpForm": {
+    "Errors": {
+      "Required": "This field is required",
+      "Email": "Use correct email",
+      "minLength": "Min length is 10 symbols",
+      "maxLength": "Max length is 30 symbols",
+      "PasswordMatch": "Passwords must match"
+    },
+    "Placeholders": {
+      "Name": "Name",
+      "Email": "Email",
+      "Password": "Password",
+      "ConfirmPassword": "Confirm Password"
+    },
+    "Metadata": {
+      "Title": "SignUp | PowerPulse"
+    },
+    "Login": "Login",
+    "Register": "Register",
+    "Title": "Registration"
   }
 }

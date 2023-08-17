@@ -3,7 +3,8 @@
 import { SizeType } from "@/types/SizeType";
 import styled from "styled-components";
 
-export interface DefaultButtonPropsType {
+export interface DefaultButtonPropsType
+  extends React.HTMLProps<HTMLButtonElement> {
   $marginTop?: string;
   $type: "primary" | "secondary";
   $size: SizeType;

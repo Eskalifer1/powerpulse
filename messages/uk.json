@@ -51,5 +51,26 @@
       "GoToExcercises": "Перейти до вправ",
       "GoToWorkouts": "Перейти до тренування"
     }
+  },
+  "SignUpForm": {
+    "Errors": {
+      "Required": "Це обов'язкове поле",
+      "Email": "Введіть коректний email",
+      "minLength": "Мінімальна довжина - 10 символів",
+      "maxLength": "Максимальна довжина - 30 символів",
+      "PasswordMatch": "Паролі повині співпадають"
+    },
+    "Placeholders": {
+      "Name": "Ім'я",
+      "Email": "Email",
+      "Password": "Пароль",
+      "ConfirmPassword": "Підтвердити пароль"
+    },
+    "Metadata": {
+      "Title": "Реєстрація | PowerPulse"
+    },
+    "Login": "Вхід",
+    "Register": "Зареєструватися",
+    "Title": "Реєстрація"
   }
 }
