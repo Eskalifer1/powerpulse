@@ -1,4 +1,4 @@
-import SignUpScreen from "@/Screens/SignUp";
+import ExerciseCreateScreen from "@/Screens/ExerciseCreate";
 import { Metadata } from "next";
 import { getTranslator } from "next-intl/server";
 
@@ -7,16 +7,17 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }) {
-  const t = await getTranslator(locale, "SignUpForm.Metadata");
+  const t = await getTranslator(locale, "ExercisesCreatePage.MetaData");
 
   return {
     title: t("Title"),
     description: t("Description"),
+    keywords: t("Keywords"),
   } as Metadata;
 }
 
-const SignUpPage = () => {
-  return <SignUpScreen />;
+const ExercisesCreate = () => {
+  return <ExerciseCreateScreen />;
 };
 
-export default SignUpPage;
+export default ExercisesCreate;

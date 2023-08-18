@@ -67,10 +67,62 @@
       "ConfirmPassword": "Confirm Password"
     },
     "Metadata": {
-      "Title": "SignUp | PowerPulse"
+      "Title": "SignUp | PowerPulse",
+      "Description": "Registration Page for PowerPulse"
     },
     "Login": "Login",
     "Register": "Register",
-    "Title": "Registration"
+    "Title": "Registration",
+    "Or": "Or"
+  },
+  "ExercisesPage": {
+    "MetaData": {
+      "Title": "My Exercise List | PowerPulse",
+      "Description": "Browse and manage the exercises you've created for your training sessions",
+      "Keywords": "exercise, training, workout, list, manage"
+    }
+  },
+  "ExercisesCreatePage": {
+    "MetaData": {
+      "Title": "Create New Exercise | PowerPulse",
+      "Description": "Create a new exercise to add to your training routine",
+      "Keywords": "create, exercise, training, workout"
+    },
+    "Placeholders": {
+      "Name": "Name",
+      "Weight": "Weight",
+      "Count": "Number of repetitions",
+      "MinCount": "Minimum number of repetitions",
+      "MaxCount": "Maximum number of repetitions",
+      "CountUp": "The number of repetition increases",
+      "WeightUp": "Number of weight increases"
+    },
+    "Labels": {
+      "Name": "Enter exercise name",
+      "Weight": "Enter exercise start weight",
+      "Count": "Enter your number of repetitions",
+      "MinCount": "Enter your minimum number of repetitions",
+      "MaxCount": "Enter your maximum number of repetitions",
+      "CountUp": "Enter the number of repetition increases",
+      "WeightUp": "Enter your  number of weight increases"
+    },
+    "Tips": {
+      "Name": "Exercise Name",
+      "Weight": "Enter the so-called 'Start Point' - the initial weight of your exercise, from which the rest of the values will be based",
+      "Count": "The same point as for the weight",
+      "MinCount": "The minimum number of repetitions is the number that will be set as the number of repetitions when the maximum point is reached ",
+      "MaxCount": "The maximum number of repetitions is the so-called maximum point, the number at which the weight increases and resets to the minimum number of repetitions",
+      "CountUp": "The number by which the number of repetitions will increase when you press the increase button",
+      "WeightUp": "The number by which the weight will increase when the maximum point is reached"
+    },
+    "Buttons": {
+      "Reset": "Reset fields",
+      "Submit": "Create exercise"
+    },
+    "Errors": {
+      "Required": "This field is required",
+      "Number": "Not a number"
+    },
+    "Title": "Create Exercise"
   }
 }

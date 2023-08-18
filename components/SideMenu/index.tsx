@@ -1,8 +1,8 @@
-import { BlackOpacitySideBarBackground } from "@/styles/BlackOpacityBackground";
 import { HorizontalLine } from "@/uiKit/HorizontalLine/style";
 import { MarginBlock } from "@/uiKit/MarginBlock/style";
 import { nvaItems } from "@/utils/nav";
 import { BiChevronLeft } from "react-icons/bi";
+import BlackOpacitySideBarBackground from "../BlackOpacityBackground";
 import LocaleSwitcher from "../LocaleSwitcher";
 import Logo from "../Logo";
 import SideMenuBlock from "./SideMenuBlock";
@@ -28,7 +28,7 @@ export const SideMenu = () => {
         <div id="isCollapsed" data-collapsed="true"></div>
         <UserInfo />
       </SideMenuWrap>
-      <BlackOpacitySideBarBackground className="sideMenuBackground" />
+      <BlackOpacitySideBarBackground />
     </SideMenuWithBackground>
   );
 };

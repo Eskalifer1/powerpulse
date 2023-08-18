@@ -1,17 +1,17 @@
-import SignUpForm from "@/components/Forms/SignUpForm";
+import CreateExercisesForm from "@/components/Forms/CreateExercise";
 import { DefalutMain } from "@/styles/DefaultMain";
 import { DefalutTitleH1 } from "@/styles/DefaultTitle";
 import { useTranslations } from "next-intl";
 
-const SignUpScreen = () => {
-  const t = useTranslations("SignUpForm");
+const ExerciseCreateScreen = () => {
+  const t = useTranslations("ExercisesCreatePage");
 
   return (
     <DefalutMain>
       <DefalutTitleH1>{t("Title")}</DefalutTitleH1>
-      <SignUpForm />
+      <CreateExercisesForm />;
     </DefalutMain>
   );
 };
 
-export default SignUpScreen;
+export default ExerciseCreateScreen;

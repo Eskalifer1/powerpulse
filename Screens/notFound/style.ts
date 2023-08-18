@@ -9,7 +9,6 @@ export const NotFoundImageWrap = styled.div`
 `;
 
 export const NotFoundTitle = styled.h1`
-  margin-block-start: 2rem;
   font-size: clamp(1.56rem, calc(0.56rem + 4.99vw), 4.43rem);
   text-align: center;
 `;

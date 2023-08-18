@@ -2,7 +2,7 @@
 
 import { styled } from "styled-components";
 
-export const BlackOpacitySideBarBackground = styled.div`
+export const BlackOpacitySideBarBackgroundWrap = styled.div`
   position: fixed;
   top: 0;
   left: 0;

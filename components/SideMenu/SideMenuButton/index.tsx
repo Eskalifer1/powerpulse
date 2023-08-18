@@ -11,19 +11,17 @@ const SideMenuButtonHide: FC<PropsType> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(true);
 
   return (
-    <>
-      <SideMenuButton
-        onClick={(e) => {
-          setCollapsed((prev) => !prev);
-          const idButton = document.querySelector("#isCollapsed");
-          idButton?.setAttribute("data-collapsed", String(!collapsed));
-        }}
-        $collapsed={collapsed}
-        title={collapsed ? "Show" : "Hide"}
-      >
-        {children}
-      </SideMenuButton>
-    </>
+    <SideMenuButton
+      onClick={(e) => {
+        setCollapsed((prev) => !prev);
+        const idButton = document.querySelector("#isCollapsed");
+        idButton?.setAttribute("data-collapsed", String(!collapsed));
+      }}
+      $collapsed={collapsed}
+      title={collapsed ? "Show" : "Hide"}
+    >
+      {children}
+    </SideMenuButton>
   );
 };
 

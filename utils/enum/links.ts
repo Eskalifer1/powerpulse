@@ -1,8 +1,8 @@
 export enum LinkEnum {
   REGISTRATION = "/signUp",
   HOME = "/",
-  EXCERICES = "/excercises",
-  EXCERICES_CREATE = "/excercises/create",
+  EXCERICES = "/exercises",
+  EXCERICES_CREATE = "/exercises/create",
   WORKOUT = "/workout",
   WORKOUT_CREATE = "/workout/create",
 }
