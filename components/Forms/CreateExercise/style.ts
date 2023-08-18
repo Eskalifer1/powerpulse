@@ -7,7 +7,7 @@ export const CreateExerciseButtonsWrap = styled.div`
   align-items: center;
   justify-content: space-around;
   margin-top: 1.5rem;
-  &:not(:first-child) {
+  & :not(:first-child) {
     margin-left: 1rem;
   }
 `;

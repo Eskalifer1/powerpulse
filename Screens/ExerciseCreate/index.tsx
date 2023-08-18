@@ -9,7 +9,7 @@ const ExerciseCreateScreen = () => {
   return (
     <DefalutMain>
       <DefalutTitleH1>{t("Title")}</DefalutTitleH1>
-      <CreateExercisesForm />;
+      <CreateExercisesForm />
     </DefalutMain>
   );
 };
