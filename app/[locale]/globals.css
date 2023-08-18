@@ -6,6 +6,7 @@
   --step-3: clamp(2rem, calc(0.52rem + 3.9vw), 3.54rem);
   --step-4: clamp(1.56rem, calc(0.56rem + 4.99vw), 4.43rem);
   --step-5: clamp(1.87rem, calc(0.59rem + 6.37vw), 5.53rem);
+  --xxxl-step: clamp(12.5rem, calc(10.33rem + 10.87vw), 18.75rem);
 
   --body-padding: clamp(5rem, calc(2.61rem + 6.96vw), 8rem);
   /* 6rem-4rem */

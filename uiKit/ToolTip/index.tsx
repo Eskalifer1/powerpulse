@@ -15,10 +15,7 @@ export const ToolTip: FC<PropsType> = ({ text, icon: Icon, size = 25 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
-    <ToolTipWrap
-      onMouseEnter={() => setIsVisible(true)}
-      onMouseLeave={() => setIsVisible(false)}
-    >
+    <ToolTipWrap onClick={() => setIsVisible((prev) => !prev)}>
       {!!isVisible && <ToolTipText>{text}</ToolTipText>}
       {Icon ? <Icon /> : <TbInfoOctagon size={size} />}
     </ToolTipWrap>
