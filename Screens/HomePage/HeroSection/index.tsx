@@ -1,12 +1,12 @@
 import heroImage from "@/public/images/heroImage.jpg";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import {
-    HeroImageWrap,
-    HeroSectionDescription,
-    HeroSectionTextBlock,
-    HeroSectionTitle,
-    HeroSectionWrap,
+  HeroImage,
+  HeroImageWrap,
+  HeroSectionDescription,
+  HeroSectionTextBlock,
+  HeroSectionTitle,
+  HeroSectionWrap
 } from "./style";
 
 const HeroSection = () => {
@@ -15,14 +15,13 @@ const HeroSection = () => {
   return (
     <HeroSectionWrap>
       <HeroImageWrap>
-        <Image
+        <HeroImage
           src={heroImage}
           alt="Workout Hero"
           fill
           priority
           sizes="95vw"
           placeholder="blur"
-          objectFit="cover"
         />
         <HeroSectionTextBlock>
           <HeroSectionTitle>{t("Title")}</HeroSectionTitle>

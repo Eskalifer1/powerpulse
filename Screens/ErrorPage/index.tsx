@@ -12,7 +12,7 @@ interface PropsType {
 }
 
 const ErrorPageScreen: FC<PropsType> = ({ error }) => {
-  console.log(error);
+  console.error(error);
 
   const t = useTranslations("ErrorPage");
 

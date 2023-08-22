@@ -34,7 +34,8 @@
   },
   "Global": {
     "Login": "Log in",
-    "Register": "Register"
+    "Register": "Register",
+    "Error": "Something went wrong! Try again later"
   },
   "Footer": {
     "Title": "Created by {firstName} and {secondName}"
@@ -70,6 +71,10 @@
       "Title": "SignUp | PowerPulse",
       "Description": "Registration Page for PowerPulse"
     },
+    "Notifications": {
+      "Created": "Account has been successfully created",
+      "Error": "Error creating an account"
+    },
     "Login": "Login",
     "Register": "Register",
     "Title": "Registration",
@@ -80,7 +85,8 @@
       "Title": "My Exercise List | PowerPulse",
       "Description": "Browse and manage the exercises you've created for your training sessions",
       "Keywords": "exercise, training, workout, list, manage"
-    }
+    },
+    "Title": "My Exercise List"
   },
   "ExercisesCreatePage": {
     "MetaData": {
@@ -122,6 +128,10 @@
     "Errors": {
       "Required": "This field is required",
       "Number": "Not a number"
+    },
+    "Notification": {
+      "Created": "Exercise has been successfully created",
+      "Error": "Error creating an exercise"
     },
     "Title": "Create Exercise"
   }

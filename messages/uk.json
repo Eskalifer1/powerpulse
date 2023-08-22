@@ -70,6 +70,10 @@
       "Title": "Реєстрація | PowerPulse",
       "Description": "Сторінка реєстрації сайту PowerPulse"
     },
+    "Notifications": {
+      "Created": "Аккаунт було успішно створено",
+      "Error": "Помилка при створенні аккаунту"
+    },
     "Login": "Увійти",
     "Register": "Зареєструватися",
     "Title": "Реєстрація",
@@ -80,7 +84,8 @@
       "Title": "Мій список вправ | PowerPulse",
       "Description": "Переглядайте та керуйте вправами, які ви створили для своїх тренувань",
       "Keywords": "exercise, training, workout, list, manage"
-    }
+    },
+    "Title": "Мій список вправ"
   },
   "ExercisesCreatePage": {
     "MetaData": {
@@ -122,6 +127,10 @@
     "Errors": {
       "Required": "Це обов'язкове поле",
       "Number": "Не є числом"
+    },
+    "Notification": {
+      "Created": "Вправа успішно створена",
+      "Error": "Помилка під час створення вправи"
     },
     "Title": "Створення вправи"
   }

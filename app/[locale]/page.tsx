@@ -15,5 +15,5 @@ export async function generateMetadata({
 }
 
 export default function Home() {
-  return <HomePageScreen></HomePageScreen>;
+  return <HomePageScreen />;
 }

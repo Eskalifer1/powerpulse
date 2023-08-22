@@ -1,9 +1,12 @@
 "use client";
 
+import { AuthService } from "@/services/Auth";
 import { StyledForm } from "@/styles/StyledForm";
 import { SignUpFormType } from "@/types/Forms/SignUpForm";
 import { Input, InputBlock, InputErrorText } from "@/uiKit/Input/style";
 import { DefaultButton } from "@/uiKit/button/style";
+import { ResponseEnum } from "@/utils/enum/ResponseStatus";
+import { statusManageFunction } from "@/utils/functions/StatusManage";
 import useYupValidationResolver from "@/utils/hooks/useYupResolver";
 import { SignUpScheme } from "@/utils/schemas/SignUpScheme";
 import { signIn } from "next-auth/react";
@@ -22,8 +25,14 @@ const SignUpForm = () => {
   } = useForm<SignUpFormType>({
     resolver: useYupValidationResolver(SignUpScheme),
   });
-  const onSubmit = (data: SignUpFormType) => {
-    console.log(data);
+  const onSubmit = async (data: SignUpFormType) => {
+    const response = await AuthService.signUp(data);
+    statusManageFunction(
+      response,
+      ResponseEnum.CREATED,
+      t("Notifications.Created"),
+      t("Notifications.Error")
+    );
     reset();
   };
 

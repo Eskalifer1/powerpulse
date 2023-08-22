@@ -2,12 +2,14 @@ import Footer from "@/components/Footer";
 import { SideMenu } from "@/components/SideMenu";
 import StyledComponentsRegistry from "@/lib/StyledComponentRegistry";
 import AuthProvider from "@/providers/AuthProvider";
+import QueryProvider from "@/providers/QueryClientProvider";
 import { Spacer } from "@/uiKit/Spacer/style";
 import { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getTranslator } from "next-intl/server";
 import { Poppins } from "next/font/google";
 import { notFound } from "next/navigation";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -45,23 +47,22 @@ export default async function RootLayout({
     notFound();
   }
 
-  if (params.locale !== locale) {
-    notFound();
-  }
-
   return (
     <html lang={locale}>
       <AuthProvider>
-        <StyledComponentsRegistry>
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            <body className={poppins.className}>
-              <SideMenu />
-              {children}
-              <Spacer $size="2rem" />
-              <Footer />
-            </body>
-          </NextIntlClientProvider>
-        </StyledComponentsRegistry>
+        <QueryProvider>
+          <StyledComponentsRegistry>
+            <NextIntlClientProvider locale={locale} messages={messages}>
+              <body className={poppins.className}>
+                <SideMenu />
+                {children}
+                <Spacer $size="2rem" />
+                <Footer />
+                <Toaster position="top-center" />
+              </body>
+            </NextIntlClientProvider>
+          </StyledComponentsRegistry>
+        </QueryProvider>
       </AuthProvider>
     </html>
   );

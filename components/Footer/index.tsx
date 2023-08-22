@@ -4,10 +4,10 @@ import { useTranslations } from "next-intl";
 import { BiLogoGithub } from "react-icons/bi";
 import SocialLinks from "./SocialLink";
 import {
-    FooterText,
-    FooterWrap,
-    SocialBlockLink,
-    SocialLinksOutsideWrap,
+  FooterText,
+  FooterWrap,
+  SocialBlockLink,
+  SocialLinksOutsideWrap,
 } from "./style";
 
 const Footer = () => {

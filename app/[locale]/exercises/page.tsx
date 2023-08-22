@@ -1,3 +1,4 @@
+import ExerciseScreen from "@/Screens/Exercise";
 import { Metadata } from "next";
 import { getTranslator } from "next-intl/server";
 
@@ -15,8 +16,8 @@ export async function generateMetadata({
   } as Metadata;
 }
 
-const Exercises = () => {
-  return <></>;
+const Exercises = async () => {
+  return <ExerciseScreen />;
 };
 
 export default Exercises;

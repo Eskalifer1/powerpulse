@@ -6,6 +6,9 @@ import { Input, InputBlock, InputErrorText } from "@/uiKit/Input/style";
 import { Label } from "@/uiKit/Label/style";
 import { ToolTip } from "@/uiKit/ToolTip";
 import { DefaultButton } from "@/uiKit/button/style";
+import { ResponseEnum } from "@/utils/enum/ResponseStatus";
+import { statusManageFunction } from "@/utils/functions/StatusManage";
+import { usePostData } from "@/utils/hooks/usePostData";
 import useYupValidationResolver from "@/utils/hooks/useYupResolver";
 import { CreateExerciseScheme } from "@/utils/schemas/CreateExerciseScheme";
 import { useTranslations } from "next-intl";
@@ -14,6 +17,7 @@ import { CreateExerciseButtonsWrap } from "./style";
 
 const CreateExercisesForm = () => {
   const t = useTranslations("ExercisesCreatePage");
+  const postFunction = usePostData();
 
   const {
     register,
@@ -23,11 +27,18 @@ const CreateExercisesForm = () => {
   } = useForm<CreateExerciseFormType>({
     resolver: useYupValidationResolver(CreateExerciseScheme),
   });
-  const onSubmit = (data: CreateExerciseFormType) => {
-    console.log(data);
+  const onReset = () => {
     reset();
   };
-  const onReset = () => {
+  const onSubmit = async (data: CreateExerciseFormType) => {
+    const dataLog = await postFunction("exercises/createExercise", data);
+    console.log(dataLog);
+    statusManageFunction(
+      dataLog,
+      ResponseEnum.CREATED,
+      t("Notification.Created"),
+      t("Notification.Error")
+    );
     reset();
   };
 

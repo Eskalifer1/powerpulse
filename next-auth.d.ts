@@ -1,10 +1,9 @@
 import { DefaultUser } from "next-auth";
 import "next-auth/jwt";
+import { TokenType } from "./types/Tokens";
 
-export type Role = "admin" | "user";
-
-interface IUser extends DefaultUser {
-  role?: Role;
+interface IUser extends DefaultUser, TokenType {
+  role: string;
 }
 
 declare module "next-auth" {

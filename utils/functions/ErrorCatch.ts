@@ -1,9 +1,9 @@
-export const errorCatch = (error: any): string => {
-  const message = error?.response?.data?.message;
+export const errorCatch = (error: any): number => {
+  const message = error?.response?.status;
 
   return message
-    ? typeof error.response.data.message === "object"
+    ? typeof error.response.status === "object"
       ? message[0]
       : message
-    : error.message;
+    : error.status;
 };

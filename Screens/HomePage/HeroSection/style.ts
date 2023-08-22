@@ -1,6 +1,7 @@
 "use client";
 
 import { mediaQueries } from "@/utils/media";
+import Image from "next/image";
 import { styled } from "styled-components";
 
 export const HeroSectionWrap = styled.section``;
@@ -9,6 +10,10 @@ export const HeroImageWrap = styled.div`
   position: relative;
   width: 100%;
   height: 400px;
+`;
+
+export const HeroImage = styled(Image)`
+  object-fit: cover;
 `;
 
 export const HeroSectionTextBlock = styled.div`
