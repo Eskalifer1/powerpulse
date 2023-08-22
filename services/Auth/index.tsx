@@ -1,4 +1,4 @@
-import { instance } from "@/api/instance";
+import { instance } from "@/apiFolder/instance";
 import { SignUpFormType } from "@/types/Forms/SignUpForm";
 import { LoginApiResponse, LoginServiceResponse } from "@/types/Response/login";
 import { errorCatch } from "@/utils/functions/ErrorCatch";

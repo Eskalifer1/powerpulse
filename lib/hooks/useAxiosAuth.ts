@@ -1,4 +1,4 @@
-import { authInstance } from "@/api/instance";
+import { authInstance } from "@/apiFolder/instance";
 import { AxiosError, AxiosResponse } from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";

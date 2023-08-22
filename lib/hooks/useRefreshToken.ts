@@ -1,6 +1,6 @@
 "use client";
 
-import { instance } from "@/api/instance";
+import { instance } from "@/apiFolder/instance";
 import { signIn, useSession } from "next-auth/react";
 
 export const useRefreshToken = () => {
