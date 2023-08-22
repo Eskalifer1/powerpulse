@@ -42,7 +42,6 @@ const authMiddleware = withAuth(
         new URL(`/${currentLanguage}/denied`, req.url)
       );
     }
-
     return intlMiddleware(req);
   },
   {
