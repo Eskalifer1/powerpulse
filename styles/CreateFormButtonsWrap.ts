@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { styled } from "styled-components";
+import styled from "styled-components";
 
-export const CreateExerciseButtonsWrap = styled.div`
+export const CreateFormButtonsWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;

@@ -1,5 +1,6 @@
 "use client";
 
+import { CreateFormButtonsWrap } from "@/styles/CreateFormButtonsWrap";
 import { StyledForm } from "@/styles/StyledForm";
 import { CreateExerciseFormType } from "@/types/Forms/CreateExerciseForm";
 import { Input, InputBlock, InputErrorText } from "@/uiKit/Input/style";
@@ -13,7 +14,6 @@ import useYupValidationResolver from "@/utils/hooks/useYupResolver";
 import { CreateExerciseScheme } from "@/utils/schemas/CreateExerciseScheme";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-import { CreateExerciseButtonsWrap } from "./style";
 
 const CreateExercisesForm = () => {
   const t = useTranslations("ExercisesCreatePage");
@@ -126,7 +126,7 @@ const CreateExercisesForm = () => {
           <InputErrorText>{t(errors.weightUp.message)}</InputErrorText>
         )}
       </InputBlock>
-      <CreateExerciseButtonsWrap>
+      <CreateFormButtonsWrap>
         <DefaultButton
           $type="primary"
           $size="md"
@@ -138,7 +138,7 @@ const CreateExercisesForm = () => {
         <DefaultButton $type="secondary" $size="md" type="submit">
           {t("Buttons.Submit")}
         </DefaultButton>
-      </CreateExerciseButtonsWrap>
+      </CreateFormButtonsWrap>
     </StyledForm>
   );
 };

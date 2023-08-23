@@ -47,10 +47,10 @@
     },
     "NavigationSection": {
       "Title": "Navigation",
-      "CreateExcercises": "Create exercises",
-      "CreateWorkouts": "Create Workouts",
+      "CreateExcercises": "Create exercise",
+      "CreateWorkouts": "Create Workout",
       "GoToExcercises": "Get to excercises",
-      "GoToWorkouts": "Get to workout"
+      "GoToWorkouts": "Get to workouts"
     }
   },
   "SignUpForm": {
@@ -86,7 +86,8 @@
       "Description": "Browse and manage the exercises you've created for your training sessions",
       "Keywords": "exercise, training, workout, list, manage"
     },
-    "Title": "My Exercise List"
+    "Title": "My Exercise List",
+    "CreateExcercises": "Create exercises"
   },
   "ExercisesCreatePage": {
     "MetaData": {
@@ -133,6 +134,41 @@
       "Created": "Exercise has been successfully created",
       "Error": "Error creating an exercise"
     },
-    "Title": "Create Exercise"
+    "Title": "Create Exercise",
+    "GoToExcercises": "Get to excercises"
+  },
+  "WorkoutPage": {
+    "MetaData": {
+      "Title": "Workouts | PowerPulse",
+      "Description": "Create and control exercises for your training sessions. Customize your workout routines and track your progress with ease"
+    },
+    "Title": "My Workouts",
+    "CreateWorkouts": "Create Workout"
+  },
+  "CreateWorkoutPage": {
+    "MetaData": {
+      "Title": "Create Workout | PowerPulse",
+      "Description": "Design and create custom workout routines tailored to your fitness goals. Add exercises and track your progress"
+    },
+    "Placeholders": {
+      "Name": "Name"
+    },
+    "Labels": {
+      "Name": "Enter workout name",
+      "Exercises": "Select the exercises to be included in your workout"
+    },
+    "Buttons": {
+      "Reset": "Reset fields",
+      "Submit": "Create workout"
+    },
+    "Errors": {
+      "Required": "This field is required"
+    },
+    "Notification": {
+      "Created": "Workout has been successfully created",
+      "Error": "Error creating an workout"
+    },
+    "Title": "Create Workout",
+    "GoToWorkouts": "Get to workouts"
   }
 }

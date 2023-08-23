@@ -3,6 +3,6 @@ export enum LinkEnum {
   HOME = "/",
   EXCERICES = "/exercises",
   EXCERICES_CREATE = "/exercises/create",
-  WORKOUT = "/workout",
-  WORKOUT_CREATE = "/workout/create",
+  WORKOUT = "/workouts",
+  WORKOUT_CREATE = "/workouts/create",
 }
