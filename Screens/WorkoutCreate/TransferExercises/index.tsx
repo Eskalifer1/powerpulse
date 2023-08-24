@@ -39,7 +39,7 @@ const TransferExercises = forwardRef<TransferListRefElementType, PropsType>(
 
     return (
       <TransferListExercisesWrap>
-        <TransferList data={initialData} ref={ref} />;
+        <TransferList data={initialData} ref={ref} />
       </TransferListExercisesWrap>
     );
   }
