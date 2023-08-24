@@ -6,7 +6,7 @@ export interface ExerciseType {
   maxCount: number;
   countUp: number;
   weightUp: number;
-  _id: number;
+  _id: string;
 }
 
 export type ValidExerciseFields = keyof ExerciseType;

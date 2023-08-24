@@ -20,6 +20,7 @@
     "next-auth": "^4.22.3",
     "next-intl": "^3.0.0-beta.9",
     "react": "18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.2",
     "react-hot-toast": "^2.4.1",
@@ -27,5 +28,8 @@
     "styled-components": "^6.0.6",
     "typescript": "5.1.6",
     "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/react-beautiful-dnd": "^13.1.4"
   }
 }

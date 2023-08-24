@@ -1,8 +1,10 @@
 "use client";
 
+import TransferExercises from "@/Screens/WorkoutCreate/TransferExercises";
 import { CreateFormButtonsWrap } from "@/styles/CreateFormButtonsWrap";
 import { StyledForm } from "@/styles/StyledForm";
 import { CreateExerciseFormType } from "@/types/Forms/CreateExerciseForm";
+import { TransferListRefElementType } from "@/types/TransferListGetElementType";
 import { Input, InputBlock, InputErrorText } from "@/uiKit/Input/style";
 import { Label } from "@/uiKit/Label/style";
 import { DefaultButton } from "@/uiKit/button/style";
@@ -12,11 +14,13 @@ import { usePostData } from "@/utils/hooks/usePostData";
 import useYupValidationResolver from "@/utils/hooks/useYupResolver";
 import { CreateWorkoutScheme } from "@/utils/schemas/CreateWorkoutScheme";
 import { useTranslations } from "next-intl";
+import { MutableRefObject, useRef } from "react";
 import { useForm } from "react-hook-form";
 
 const CreateWorkoutForm = () => {
   const t = useTranslations("CreateWorkoutPage");
   const postFunction = usePostData();
+  const ref = useRef() as MutableRefObject<TransferListRefElementType>;
 
   const {
     register,
@@ -28,11 +32,21 @@ const CreateWorkoutForm = () => {
   });
 
   const onReset = () => {
+    ref.current.clear();
     reset();
   };
 
   const onSubmit = async (data: CreateExerciseFormType) => {
-    const dataLog = await postFunction("exercises/createTraining", data);
+    const ids = ref.current?.getIds("column-2");
+    const createWorkoutoObj = {
+      ...data,
+      exercisesId: ids,
+    };
+
+    const dataLog = await postFunction(
+      "exercises/createTraining",
+      createWorkoutoObj
+    );
     console.log(dataLog);
     statusManageFunction(
       dataLog,
@@ -40,7 +54,7 @@ const CreateWorkoutForm = () => {
       t("Notification.Created"),
       t("Notification.Error")
     );
-    reset();
+    onReset();
   };
 
   return (
@@ -51,6 +65,10 @@ const CreateWorkoutForm = () => {
         {errors.name && (
           <InputErrorText>{t(errors.name.message)}</InputErrorText>
         )}
+      </InputBlock>
+      <InputBlock>
+        <Label>{t("Labels.Exercises")}</Label>
+        <TransferExercises ref={ref} />
       </InputBlock>
       <CreateFormButtonsWrap>
         <DefaultButton
