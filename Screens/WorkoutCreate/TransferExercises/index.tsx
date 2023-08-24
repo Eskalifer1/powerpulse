@@ -45,4 +45,6 @@ const TransferExercises = forwardRef<TransferListRefElementType, PropsType>(
   }
 );
 
+TransferExercises.displayName = "TransferExercises";
+
 export default TransferExercises;

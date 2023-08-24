@@ -61,4 +61,6 @@ const TransferList = forwardRef<TransferListRefElementType, PropsType>(
   }
 );
 
+TransferList.displayName = "TransferList";
+
 export default React.memo(TransferList);
