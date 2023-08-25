@@ -18,6 +18,7 @@
   --fs-md: clamp(0.88rem, calc(0.7rem + 0.87vw), 1.38rem);
   /* 19-12 */
   --fs-sm: clamp(0.75rem, calc(0.6rem + 0.76vw), 1.19rem);
+  --help-page-margin: clamp(4rem, calc(1.91rem + 10.43vw), 10rem);
   --help-page-image: clamp(15rem, calc(7.17rem + 39.13vw), 37.5rem);
   --help-page-svg: clamp(7.5rem, calc(3.59rem + 19.57vw), 18.75rem);
 

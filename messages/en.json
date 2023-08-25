@@ -35,7 +35,8 @@
   "Global": {
     "Login": "Log in",
     "Register": "Register",
-    "Error": "Something went wrong! Try again later"
+    "Error": "Something went wrong! Try again later",
+    "Or": "Or"
   },
   "Footer": {
     "Title": "Created by {firstName} and {secondName}"
@@ -77,8 +78,7 @@
     },
     "Login": "Login",
     "Register": "Register",
-    "Title": "Registration",
-    "Or": "Or"
+    "Title": "Registration"
   },
   "ExercisesPage": {
     "MetaData": {
@@ -167,6 +167,10 @@
     "Notification": {
       "Created": "Workout has been successfully created",
       "Error": "Error creating an workout"
+    },
+    "TransferList": {
+      "TitleCreatedExercises": "Created Exercises",
+      "TitleWorkoutExercises": "Workout Exercises"
     },
     "Title": "Create Workout",
     "GoToWorkouts": "Get to workouts"

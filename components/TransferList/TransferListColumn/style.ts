@@ -20,6 +20,8 @@ export const TransferListColumnTitleWrap = styled.div`
   text-align: center;
   width: 100%;
   padding: var(--step--1);
+  height: 100%;
+  max-height: 6rem;
 `;
 
 export const TransferListColumnTitle = styled.h3``;
@@ -28,7 +30,7 @@ export const TransferListColumnDropableWrap = styled.div`
   display: flex;
   flex-direction: column;
   padding-inline: var(--step--2);
-  padding-bottom: var(--step--2);
+  padding-bottom: var(--step-3);
   height: 25rem;
   width: 100%;
 `;

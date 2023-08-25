@@ -1,17 +1,11 @@
-import { ExerciseType } from "@/types/Exercise";
-import { tableHeaderType } from "@/types/TableHeaderType";
+import { TableProps } from "@/types/ui/Table";
 import { useTranslations } from "next-intl";
 import { FC } from "react";
 import TableHeadItem from "./TableHeadItem";
 import TableRow from "./TableRow";
 import { TableErrorTitle, TableSection, TableWrap } from "./style";
 
-interface PropsType {
-  exercises: ExerciseType[];
-  headersTitle: tableHeaderType<any>[];
-}
-
-const Table: FC<PropsType> = ({ exercises, headersTitle }) => {
+const Table: FC<TableProps> = ({ exercises, headersTitle }) => {
   const t = useTranslations("Global");
 
   if (headersTitle.length <= 0)

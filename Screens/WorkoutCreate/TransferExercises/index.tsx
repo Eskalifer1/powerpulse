@@ -6,6 +6,7 @@ import { TransferListDataType } from "@/types/TransferList";
 import { TransferListRefElementType } from "@/types/TransferListGetElementType";
 import { Loader } from "@/uiKit/Loader/style";
 import { useGetData } from "@/utils/hooks/useGetData";
+import { useTranslations } from "next-intl";
 import { forwardRef } from "react";
 import { TransferListExercisesWrap } from "./style";
 
@@ -13,6 +14,8 @@ type PropsType = {};
 
 const TransferExercises = forwardRef<TransferListRefElementType, PropsType>(
   ({}, ref) => {
+    const t = useTranslations("CreateWorkoutPage");
+
     const { data, isLoading, isFetching } =
       useGetData<ExerciseType[]>("exercises/users");
 
@@ -24,12 +27,12 @@ const TransferExercises = forwardRef<TransferListRefElementType, PropsType>(
       columns: {
         "column-1": {
           id: "column-1",
-          title: "Created Exercises",
+          title: t("TransferList.TitleCreatedExercises"),
           columnIds: [...data.map((exercise) => exercise._id)],
         },
         "column-2": {
           id: "column-2",
-          title: "Workout Exercises",
+          title: t("TransferList.TitleWorkoutExercises"),
           columnIds: [],
         },
       },

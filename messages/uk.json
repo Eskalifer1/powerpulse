@@ -34,7 +34,9 @@
   },
   "Global": {
     "Login": "Вхід",
-    "Register": "Реєстрація"
+    "Register": "Реєстрація",
+    "Error": "Щось пішло не так",
+    "Or": "Або"
   },
   "Footer": {
     "Title": "Зроблено {firstName} та {secondName}"
@@ -76,8 +78,7 @@
     },
     "Login": "Увійти",
     "Register": "Зареєструватися",
-    "Title": "Реєстрація",
-    "Or": "Або"
+    "Title": "Реєстрація"
   },
   "ExercisesPage": {
     "MetaData": {
@@ -166,6 +167,10 @@
     "Notification": {
       "Created": "Тренування створено успішно",
       "Error": "Помилка під час створення тренування"
+    },
+    "TransferList": {
+      "TitleCreatedExercises": "Створені вправи",
+      "TitleWorkoutExercises": "Вправи для тренування"
     },
     "Title": "Створити тренування",
     "GoToWorkouts": "Перейти до тренувань"
