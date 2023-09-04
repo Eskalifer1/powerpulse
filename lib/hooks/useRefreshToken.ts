@@ -16,6 +16,11 @@ export const useRefreshToken = () => {
         },
       }
     );
+    if (response.status === 401) {
+      console.log(response);
+      console.log("login again");
+      signOut();
+    }
     if (session) {
       await update({
         ...session,
@@ -26,8 +31,6 @@ export const useRefreshToken = () => {
         },
       });
     } else signIn();
-
-    if (response.status === 401) signOut();
 
     return response;
   };
