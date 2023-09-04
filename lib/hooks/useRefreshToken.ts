@@ -1,7 +1,7 @@
 "use client";
 
 import { instance } from "@/apiFolder/instance";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 export const useRefreshToken = () => {
   const { update } = useSession();
@@ -16,11 +16,6 @@ export const useRefreshToken = () => {
         },
       }
     );
-    console.log(response);
-    if (response.status === 401) {
-      console.log("login again");
-      signOut();
-    }
     if (session) {
       await update({
         ...session,

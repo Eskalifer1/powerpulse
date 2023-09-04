@@ -1,6 +1,6 @@
 import { authInstance } from "@/apiFolder/instance";
 import { AxiosError, AxiosResponse } from "axios";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useRefreshToken } from "./useRefreshToken";
 
@@ -26,7 +26,12 @@ const useAxiosAuth = () => {
           const prevRequest = error?.config;
           if (error?.response?.status === 401 && !prevRequest?.sent) {
             prevRequest.sent = true;
-            await refreshToken(session);
+            const response = await refreshToken(session);
+            console.log(response);
+            if (response.status === 401) {
+              console.log("login again");
+              signOut();
+            }
             prevRequest.headers.Authorization = `Bearer ${session?.user.accessToken}`;
             return authInstance(prevRequest);
           }
