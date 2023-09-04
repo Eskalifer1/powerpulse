@@ -16,8 +16,8 @@ export const useRefreshToken = () => {
         },
       }
     );
+    console.log(response);
     if (response.status === 401) {
-      console.log(response);
       console.log("login again");
       signOut();
     }
