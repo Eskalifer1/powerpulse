@@ -32,6 +32,7 @@
   --secondary-color: #f6f9c8;
   --accent-color: #6ddc18;
   --text-color: #010105;
+  --danger-color: #ff4d4f;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -97,6 +98,10 @@ h2 {
 
 h3 {
   font-size: var(--step-1);
+}
+
+h4 {
+  font-size: var(--fs-lg);
 }
 
 p {

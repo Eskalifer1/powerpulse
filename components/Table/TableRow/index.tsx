@@ -4,17 +4,23 @@ import { FC } from "react";
 import { TableTd, TableTr } from "./style";
 
 interface PropsType {
-  exercise: ExerciseType;
+  item: ExerciseType;
   titleHeaders: tableHeaderType<ExerciseType>[];
+  navigationRow?: FC<{ item: ExerciseType }>;
 }
 
-const TableRow: FC<PropsType> = ({ exercise, titleHeaders }) => {
+const TableRow: FC<PropsType> = ({
+  item,
+  titleHeaders,
+  navigationRow: NavigationRow,
+}) => {
   return (
     <TableTr>
       {titleHeaders.map((columnItem, index) => {
-        const columnValue = exercise[columnItem.value];
+        const columnValue = item[columnItem.value];
         return <TableTd key={index}>{columnValue}</TableTd>;
       })}
+      {NavigationRow && <TableTd>{<NavigationRow item={item} />}</TableTd>}
     </TableTr>
   );
 };

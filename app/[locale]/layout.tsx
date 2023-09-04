@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import { SideMenu } from "@/components/SideMenu";
+import { UserInfo } from "@/components/SideMenu/UserInfo";
 import StyledComponentsRegistry from "@/lib/StyledComponentRegistry";
 import AuthProvider from "@/providers/AuthProvider";
 import QueryProvider from "@/providers/QueryClientProvider";
@@ -54,7 +55,9 @@ export default async function RootLayout({
           <StyledComponentsRegistry>
             <NextIntlClientProvider locale={locale} messages={messages}>
               <body className={poppins.className}>
-                <SideMenu />
+                <SideMenu>
+                  <UserInfo />
+                </SideMenu>
                 {children}
                 <Spacer $size="2rem" />
                 <Footer />

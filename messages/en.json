@@ -36,7 +36,13 @@
     "Login": "Log in",
     "Register": "Register",
     "Error": "Something went wrong! Try again later",
-    "Or": "Or"
+    "Or": "Or",
+    "Dialogs": {
+      "Title": "Confirm Dialog",
+      "Description": "Are u sure?",
+      "Close": "Close",
+      "Delete": "Delete"
+    }
   },
   "Footer": {
     "Title": "Created by {firstName} and {secondName}"
@@ -52,6 +58,15 @@
       "CreateWorkouts": "Create Workout",
       "GoToExcercises": "Get to excercises",
       "GoToWorkouts": "Get to workouts"
+    },
+    "AboutSection": {
+      "Title": "How it works",
+      "FirstStep": "Sign up",
+      "SecondStep": "Create exercises by specifying specific values to guide them in the future (increasing or decreasing the load)",
+      "ThirdStep": "Create a workout from existing exercises",
+      "FourthStep": "During your workout, increase or decrease the load using the dedicated buttons to make progress in your workout",
+      "FifthStep": "In the next workout, do more weight or number of repetitions than in the previous one",
+      "SixthStep": "Make a Progress"
     }
   },
   "SignUpForm": {
@@ -72,13 +87,10 @@
       "Title": "SignUp | PowerPulse",
       "Description": "Registration Page for PowerPulse"
     },
-    "Notifications": {
-      "Created": "Account has been successfully created",
-      "Error": "Error creating an account"
-    },
     "Login": "Login",
     "Register": "Register",
-    "Title": "Registration"
+    "Title": "Registration",
+    "Or": "Or"
   },
   "ExercisesPage": {
     "MetaData": {
@@ -142,8 +154,10 @@
       "Title": "Workouts | PowerPulse",
       "Description": "Create and control exercises for your training sessions. Customize your workout routines and track your progress with ease"
     },
+    "AdditionalColumn": "Manage",
     "Title": "My Workouts",
-    "CreateWorkouts": "Create Workout"
+    "CreateWorkouts": "Create Workout",
+    "NoWorkout": "No workouts have been added yet"
   },
   "CreateWorkoutPage": {
     "MetaData": {

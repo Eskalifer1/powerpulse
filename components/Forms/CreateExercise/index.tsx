@@ -32,12 +32,11 @@ const CreateExercisesForm = () => {
   };
   const onSubmit = async (data: CreateExerciseFormType) => {
     const dataLog = await postFunction("exercises/createExercise", data);
-    console.log(dataLog);
+
     statusManageFunction(
-      dataLog,
+      dataLog as number,
       ResponseEnum.CREATED,
-      t("Notification.Created"),
-      t("Notification.Error")
+      t("Notification.Created")
     );
     reset();
   };

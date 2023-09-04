@@ -1,7 +1,10 @@
+import { FC } from "react";
 import { ExerciseType } from "../Exercise";
 import { tableHeaderType } from "../TableHeaderType";
 
 export interface TableProps {
-  exercises: ExerciseType[];
+  items: ExerciseType[];
   headersTitle: tableHeaderType<any>[];
+  navigationColumn?: string;
+  navigationRow?: FC<{ item: ExerciseType }>;
 }

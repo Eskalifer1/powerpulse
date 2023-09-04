@@ -24,7 +24,7 @@ const SideMenuBlock: FC<PropsType> = ({ items }) => {
           <SideMenuItem key={item.name}>
             <SideMenuLink href={item.href} aria-label={item.name}>
               <SideMenuIcon>{item.icon}</SideMenuIcon>
-              <SideMenuTitle>{t(item.name)}</SideMenuTitle>
+              <SideMenuTitle className="collaps">{t(item.name)}</SideMenuTitle>
             </SideMenuLink>
           </SideMenuItem>
         ))}

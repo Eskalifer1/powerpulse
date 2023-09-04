@@ -6,7 +6,7 @@ import styled from "styled-components";
 export interface DefaultButtonPropsType
   extends React.HTMLProps<HTMLButtonElement> {
   $marginTop?: string;
-  $type: "primary" | "secondary";
+  $type: "primary" | "secondary" | "danger";
   $size: SizeType;
 }
 
@@ -31,7 +31,9 @@ export const DefaultButton = styled.button<DefaultButtonPropsType>`
   background-color: ${(props) =>
     props.$type === "primary"
       ? "var(--primary-color)"
-      : "var(--secondary-color)"};
+      : props.$type === "secondary"
+      ? "var(--secondary-color)"
+      : "var(--danger-color)"};
 
   &:hover {
     box-shadow: ${(props) =>

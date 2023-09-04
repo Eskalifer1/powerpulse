@@ -1,24 +1,26 @@
 "use client";
 
-import { FC, ReactNode, useState } from "react";
+import { Dispatch, FC, ReactNode, SetStateAction } from "react";
 import { SideMenuButton } from "./style";
 
 interface PropsType {
   children: ReactNode;
+  isCollapsed: boolean;
+  setIsCollapsed: Dispatch<SetStateAction<boolean>>;
 }
 
-const SideMenuButtonHide: FC<PropsType> = ({ children }) => {
-  const [collapsed, setCollapsed] = useState(true);
-
+const SideMenuButtonHide: FC<PropsType> = ({
+  children,
+  isCollapsed,
+  setIsCollapsed,
+}) => {
   return (
     <SideMenuButton
       onClick={(e) => {
-        setCollapsed((prev) => !prev);
-        const idButton = document.querySelector("#isCollapsed");
-        idButton?.setAttribute("data-collapsed", String(!collapsed));
+        setIsCollapsed((prev) => !prev);
       }}
-      $collapsed={collapsed}
-      title={collapsed ? "Show" : "Hide"}
+      $collapsed={isCollapsed}
+      title={isCollapsed ? "Show" : "Hide"}
     >
       {children}
     </SideMenuButton>

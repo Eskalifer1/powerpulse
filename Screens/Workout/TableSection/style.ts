@@ -8,3 +8,8 @@ export const TableSectionWrap = styled.div`
   overflow-x: auto;
   max-width: 90%;
 `;
+
+export const NoWorkoutTitle = styled.p`
+  text-align: center;
+  margin-top: 2rem;
+`;

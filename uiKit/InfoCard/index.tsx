@@ -20,7 +20,7 @@ const InfoCard: FC<PropsType> = ({ title, subTitle, photoSrc }) => {
       <InfoCardImageWrap>
         <Image src={photoSrc || "/svg/user.svg"} alt="User Photo" fill />
       </InfoCardImageWrap>
-      <InfoCardTextBlock>
+      <InfoCardTextBlock className="collaps">
         <InfoCardTextBlockTitle>{title}</InfoCardTextBlockTitle>
         <InfoCardTextBlockSubTitle>{subTitle}</InfoCardTextBlockSubTitle>
       </InfoCardTextBlock>

@@ -47,12 +47,11 @@ const CreateWorkoutForm = () => {
       "exercises/createTraining",
       createWorkoutoObj
     );
-    console.log(dataLog);
+
     statusManageFunction(
-      dataLog,
+      dataLog as number,
       ResponseEnum.CREATED,
-      t("Notification.Created"),
-      t("Notification.Error")
+      t("Notification.Created")
     );
     onReset();
   };

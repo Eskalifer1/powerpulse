@@ -1,3 +1,4 @@
+import AboutSection from "./AboutSection";
 import HeroSection from "./HeroSection";
 import NavigationSection from "./NavigationSection";
 import { HomePageWrap } from "./style";
@@ -7,6 +8,7 @@ const HomePageScreen = () => {
     <HomePageWrap>
       <HeroSection />
       <NavigationSection />
+      <AboutSection />
     </HomePageWrap>
   );
 };

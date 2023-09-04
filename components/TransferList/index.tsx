@@ -31,7 +31,6 @@ const TransferList = forwardRef<TransferListRefElementType, PropsType>(
       },
     }));
 
-    console.log(state);
     return (
       <DragDropContext onDragEnd={onDragEnd}>
         <TransferListWrap>

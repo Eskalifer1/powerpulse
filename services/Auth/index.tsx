@@ -1,7 +1,10 @@
 import { instance } from "@/apiFolder/instance";
 import { SignUpFormType } from "@/types/Forms/SignUpForm";
+import { ResponseError } from "@/types/Response/api";
 import { LoginApiResponse, LoginServiceResponse } from "@/types/Response/login";
-import { errorCatch } from "@/utils/functions/ErrorCatch";
+import { ResponseEnum } from "@/utils/enum/ResponseStatus";
+import { AxiosError } from "axios";
+import toast from "react-hot-toast";
 
 type LoginType = {
   email: string;
@@ -16,9 +19,15 @@ export const AuthService = {
         name,
         password,
       });
-      return response.status;
-    } catch (error) {
-      return errorCatch(error);
+      if (response.status === ResponseEnum.CREATED) {
+        toast.success("Account has been successfully created");
+      }
+      return response;
+    } catch (e) {
+      const error = e as AxiosError<ResponseError>;
+      const errorMessage =
+        error.response?.data?.message[0] || "An error occurred";
+      toast.error(errorMessage);
     }
   },
   async login({ email, password }: LoginType) {

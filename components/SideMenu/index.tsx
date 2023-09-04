@@ -1,20 +1,31 @@
+"use client";
+
 import { HorizontalLine } from "@/uiKit/HorizontalLine/style";
 import { MarginBlock } from "@/uiKit/MarginBlock/style";
 import { nvaItems } from "@/utils/nav";
+import { FC, ReactNode, useState } from "react";
 import { BiChevronLeft } from "react-icons/bi";
 import BlackOpacitySideBarBackground from "../BlackOpacityBackground";
 import LocaleSwitcher from "../LocaleSwitcher";
 import Logo from "../Logo";
 import SideMenuBlock from "./SideMenuBlock";
 import SideMenuButtonHide from "./SideMenuButton";
-import { UserInfo } from "./UserInfo";
 import { SideMenuWithBackground, SideMenuWrap } from "./style";
 
-export const SideMenu = () => {
+type PropsType = {
+  children: ReactNode;
+};
+
+export const SideMenu: FC<PropsType> = ({ children }) => {
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
   return (
-    <SideMenuWithBackground>
-      <SideMenuWrap>
-        <SideMenuButtonHide>
+    <SideMenuWithBackground $collapsed={isCollapsed}>
+      <SideMenuWrap $collapsed={isCollapsed}>
+        <SideMenuButtonHide
+          isCollapsed={isCollapsed}
+          setIsCollapsed={setIsCollapsed}
+        >
           <BiChevronLeft size={30} />
         </SideMenuButtonHide>
         <Logo />
@@ -25,10 +36,9 @@ export const SideMenu = () => {
         <MarginBlock $marginTop="2rem">
           <SideMenuBlock items={nvaItems} />
         </MarginBlock>
-        <div id="isCollapsed" data-collapsed="true"></div>
-        <UserInfo />
+        {children}
       </SideMenuWrap>
-      <BlackOpacitySideBarBackground />
+      <BlackOpacitySideBarBackground setIsCollapsed={setIsCollapsed} />
     </SideMenuWithBackground>
   );
 };

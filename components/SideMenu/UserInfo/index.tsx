@@ -10,8 +10,8 @@ const InfoCard = dynamic(() => import("@/uiKit/InfoCard"));
 export const UserInfo = async () => {
   const session = await getServerSession(authConfig);
 
-  const title = session?.user.name || "Anonimus";
-  const subTitle = session?.user.email || "hacker@gmail.com";
+  const title = session?.user.name || "Not Found";
+  const subTitle = session?.user.email || "Not Found";
 
   return (
     <UserInfoWrap $marginTop="auto">

@@ -1,5 +1,6 @@
 "use client";
 
+import TableExerciseNavigation from "@/Screens/Exercise/TableSection/TableExerciseNavigation";
 import Table from "@/components/Table";
 import { ExerciseType } from "@/types/Exercise";
 import { Loader } from "@/uiKit/Loader/style";
@@ -10,11 +11,16 @@ import { ExerciseTableSectionWrap } from "./style";
 const ExerciseTableSection = () => {
   const { data, isLoading, isFetching } =
     useGetData<ExerciseType[]>("exercises/users");
-  console.log(data);
+
   if (isLoading || isFetching) return <Loader $marginTop="10rem" />;
   return (
     <ExerciseTableSectionWrap>
-      <Table exercises={data || []} headersTitle={exerciseTableHeaders} />
+      <Table
+        items={data || []}
+        headersTitle={exerciseTableHeaders}
+        navigationColumn="Management"
+        navigationRow={TableExerciseNavigation}
+      />
     </ExerciseTableSectionWrap>
   );
 };
