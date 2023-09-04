@@ -1,6 +1,6 @@
 import { authInstance } from "@/apiFolder/instance";
 import { AxiosError, AxiosResponse } from "axios";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useRefreshToken } from "./useRefreshToken";
 
@@ -30,7 +30,6 @@ const useAxiosAuth = () => {
             prevRequest.headers.Authorization = `Bearer ${session?.user.accessToken}`;
             return authInstance(prevRequest);
           }
-          signOut();
           return Promise.reject(error);
         }
       );
