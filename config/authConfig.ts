@@ -1,22 +1,29 @@
+import { instance } from "@/apiFolder/instance";
 import { AuthService } from "@/services/Auth";
 import { LoginServiceResponse } from "@/types/Response/login";
+import { TokenType } from "@/types/Tokens";
 import type { AuthOptions } from "next-auth";
+import { JWT } from "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials";
+
+async function refreshToken(token: JWT): Promise<any> {
+  const res = await instance.post<TokenType>(
+    "auth/login/access-token",
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token.refreshToken}`,
+      },
+    }
+  );
+
+  console.log("refreshed");
+  console.log(res.data);
+  return res.data;
+}
 
 export const authConfig: AuthOptions = {
   providers: [
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_CLIENT_ID!,
-    //   clientSecret: process.env.GOOGLE_SECRET!,
-    //   profile(profile: GoogleProfile) {
-    //     return {
-    //       ...profile,
-    //       role: profile.role ?? "user",
-    //       image: profile.picture,
-    //       id: "2",
-    //     };
-    //   },
-    // }),
     Credentials({
       credentials: {
         email: { label: "Email", type: "email", required: true },
@@ -39,6 +46,7 @@ export const authConfig: AuthOptions = {
           role: userData.data.user.role || "user",
           accessToken: userData.data.accessToken,
           refreshToken: userData.data.refreshToken,
+          expiresIn: userData.data.expiresIn,
         };
       },
     }),
@@ -50,6 +58,7 @@ export const authConfig: AuthOptions = {
         session.user.role = token.role;
         session.user.accessToken = token.accessToken;
         session.user.refreshToken = token.refreshToken;
+        session.user.expiresIn = token.expiresIn;
       }
       return session;
     },
@@ -62,6 +71,13 @@ export const authConfig: AuthOptions = {
         token.role = user.role;
         token.accessToken = user.accessToken;
         token.refreshToken = user.refreshToken;
+        token.expiresIn = user.expiresIn;
+      }
+      if (new Date().getTime() > token.expiresIn) {
+        const data = await refreshToken(token);
+        token.accessToken = data.access;
+        token.refreshToken = data.refresh;
+        token.expiresIn = data.expiresIn;
       }
       return token;
     },

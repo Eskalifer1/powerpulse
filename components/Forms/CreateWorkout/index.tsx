@@ -10,7 +10,7 @@ import { Label } from "@/uiKit/Label/style";
 import { DefaultButton } from "@/uiKit/button/style";
 import { ResponseEnum } from "@/utils/enum/ResponseStatus";
 import { statusManageFunction } from "@/utils/functions/StatusManage";
-import { usePostData } from "@/utils/hooks/usePostData";
+import { useApiData } from "@/utils/hooks/useApiData";
 import useYupValidationResolver from "@/utils/hooks/useYupResolver";
 import { CreateWorkoutScheme } from "@/utils/schemas/CreateWorkoutScheme";
 import { useTranslations } from "next-intl";
@@ -19,7 +19,7 @@ import { useForm } from "react-hook-form";
 
 const CreateWorkoutForm = () => {
   const t = useTranslations("CreateWorkoutPage");
-  const postFunction = usePostData();
+  const createFunction = useApiData();
   const ref = useRef() as MutableRefObject<TransferListRefElementType>;
 
   const {
@@ -42,14 +42,14 @@ const CreateWorkoutForm = () => {
       ...data,
       exercisesId: ids,
     };
-
-    const dataLog = await postFunction(
+    const dataLog = await createFunction(
       "exercises/createTraining",
+      "POST",
       createWorkoutoObj
     );
 
     statusManageFunction(
-      dataLog as number,
+      dataLog.status as number,
       ResponseEnum.CREATED,
       t("Notification.Created")
     );

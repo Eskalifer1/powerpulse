@@ -100,10 +100,6 @@ h3 {
   font-size: var(--step-1);
 }
 
-h4 {
-  font-size: var(--fs-lg);
-}
-
 p {
   font-size: var(--fs-sm);
   letter-spacing: normal;

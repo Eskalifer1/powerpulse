@@ -6,5 +6,6 @@ export interface TableProps {
   items: ExerciseType[];
   headersTitle: tableHeaderType<any>[];
   navigationColumn?: string;
-  navigationRow?: FC<{ item: ExerciseType }>;
+  navigationRow?: FC<{ item: ExerciseType; refetch?: () => void }>;
+  refetch?: () => void;
 }

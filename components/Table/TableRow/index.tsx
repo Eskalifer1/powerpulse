@@ -6,13 +6,15 @@ import { TableTd, TableTr } from "./style";
 interface PropsType {
   item: ExerciseType;
   titleHeaders: tableHeaderType<ExerciseType>[];
-  navigationRow?: FC<{ item: ExerciseType }>;
+  navigationRow?: FC<{ item: ExerciseType; refetch?: () => void }>;
+  refetch?: () => void;
 }
 
 const TableRow: FC<PropsType> = ({
   item,
   titleHeaders,
   navigationRow: NavigationRow,
+  refetch,
 }) => {
   return (
     <TableTr>
@@ -20,7 +22,9 @@ const TableRow: FC<PropsType> = ({
         const columnValue = item[columnItem.value];
         return <TableTd key={index}>{columnValue}</TableTd>;
       })}
-      {NavigationRow && <TableTd>{<NavigationRow item={item} />}</TableTd>}
+      {NavigationRow && (
+        <TableTd>{<NavigationRow item={item} refetch={refetch} />}</TableTd>
+      )}
     </TableTr>
   );
 };

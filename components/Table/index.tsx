@@ -11,6 +11,7 @@ const Table: FC<TableProps> = ({
   headersTitle,
   navigationRow,
   navigationColumn,
+  refetch,
 }) => {
   const t = useTranslations("Global");
 
@@ -35,6 +36,7 @@ const Table: FC<TableProps> = ({
               titleHeaders={headersTitle}
               key={index}
               navigationRow={navigationRow}
+              refetch={refetch}
             />
           ))}
         </tbody>

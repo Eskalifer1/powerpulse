@@ -9,7 +9,7 @@ import { ToolTip } from "@/uiKit/ToolTip";
 import { DefaultButton } from "@/uiKit/button/style";
 import { ResponseEnum } from "@/utils/enum/ResponseStatus";
 import { statusManageFunction } from "@/utils/functions/StatusManage";
-import { usePostData } from "@/utils/hooks/usePostData";
+import { useApiData } from "@/utils/hooks/useApiData";
 import useYupValidationResolver from "@/utils/hooks/useYupResolver";
 import { CreateExerciseScheme } from "@/utils/schemas/CreateExerciseScheme";
 import { useTranslations } from "next-intl";
@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form";
 
 const CreateExercisesForm = () => {
   const t = useTranslations("ExercisesCreatePage");
-  const postFunction = usePostData();
+  const createExercise = useApiData();
 
   const {
     register,
@@ -31,10 +31,14 @@ const CreateExercisesForm = () => {
     reset();
   };
   const onSubmit = async (data: CreateExerciseFormType) => {
-    const dataLog = await postFunction("exercises/createExercise", data);
+    const dataLog = await createExercise(
+      "exercises/createExercise",
+      "POST",
+      data
+    );
 
     statusManageFunction(
-      dataLog as number,
+      dataLog.status as number,
       ResponseEnum.CREATED,
       t("Notification.Created")
     );

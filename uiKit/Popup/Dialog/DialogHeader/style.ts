@@ -9,4 +9,5 @@ export const DialogHeaderWrap = styled.div`
 
 export const DialogHeaderTitle = styled.h4`
   margin-block: auto;
+  font-size: var(--fs-lg);
 `;

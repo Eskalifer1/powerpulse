@@ -10,14 +10,19 @@ export const TableWithTitleWrap = styled.div`
   margin-inline: auto;
   width: 100%;
   min-width: 30rem;
+  &:not(:first-child) {
+    margin-block-start: 3rem;
+  }
 `;
 
-export const TableWithTitleTitle = styled.h2`
-  width: 100%;
+export const TableWithTitleTitleWrap = styled.div`
   min-width: 30rem;
-  text-align: left;
+  width: 100%;
   background: var(--secondary-color);
   border: 2px solid var(--text-color);
   border-bottom: none;
   padding-inline: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
