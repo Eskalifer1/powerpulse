@@ -73,7 +73,7 @@
     "Errors": {
       "Required": "This field is required",
       "Email": "Use correct email",
-      "minLength": "Min length is 10 symbols",
+      "minLength": "Min length is 6 symbols",
       "maxLength": "Max length is 30 symbols",
       "PasswordMatch": "Passwords must match"
     },

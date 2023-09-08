@@ -6,12 +6,12 @@ export const SignUpScheme = yup.object({
   password: yup
     .string()
     .required("Errors.Required")
-    .min(10, "Errors.minLength")
+    .min(6, "Errors.minLength")
     .max(30, "Errors.maxLength"),
   confirmPassword: yup
     .string()
     .required("Errors.Required")
-    .min(10, "Errors.minLength")
+    .min(6, "Errors.minLength")
     .max(30, "Errors.maxLength")
     .oneOf([yup.ref("password")], "Errors.PasswordMatch"),
 });
