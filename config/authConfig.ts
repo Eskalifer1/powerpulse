@@ -5,6 +5,7 @@ import { TokenType } from "@/types/Tokens";
 import type { AuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials";
+import { signOut } from "next-auth/react";
 
 async function refreshToken(token: JWT): Promise<any> {
   const res = await instance.post<TokenType>(
@@ -74,10 +75,14 @@ export const authConfig: AuthOptions = {
         token.expiresIn = user.expiresIn;
       }
       if (new Date().getTime() > token.expiresIn) {
-        const data = await refreshToken(token);
-        token.accessToken = data.access;
-        token.refreshToken = data.refresh;
-        token.expiresIn = data.expiresIn;
+        try {
+          const data = await refreshToken(token);
+          token.accessToken = data.access;
+          token.refreshToken = data.refresh;
+          token.expiresIn = data.expiresIn;
+        } catch (e) {
+          signOut();
+        }
       }
       return token;
     },
