@@ -24,7 +24,7 @@ const SignButtons = () => {
       <DefaultButton
         $type="secondary"
         $size="md"
-        onClick={() => signIn()}
+        onClick={() => signIn(undefined, { callbackUrl: "/" })}
         type="button"
       >
         {t("Login")}
