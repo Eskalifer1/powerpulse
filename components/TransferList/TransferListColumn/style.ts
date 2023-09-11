@@ -30,6 +30,7 @@ export const TransferListColumnDropableWrap = styled.div`
   padding-bottom: var(--step-3);
   height: 25rem;
   width: 100%;
-  padding-block: 2rem;
+  padding-block-start: 2rem;
+  padding-block-end: 4rem;
   overflow: auto;
 `;
