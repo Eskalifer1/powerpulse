@@ -25,7 +25,6 @@ export const useGetData = <T>(url: string): FetchResult<T> => {
     },
     {
       enabled: session !== undefined, // Fetch data only when session is available
-      retry: 2, // Number of retries on failure
       onError: () => {
         toast.error("Something went wrong");
       },

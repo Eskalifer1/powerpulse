@@ -1,6 +1,7 @@
 "use client";
 
 import { ExerciseType } from "@/types/Exercise";
+import { useApiData } from "@/utils/hooks/useApiData";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { FC, useState } from "react";
@@ -12,20 +13,28 @@ import {
 
 interface PropsType {
   item: ExerciseType;
+  refetch?: () => void;
 }
 
 const Dialog = dynamic(() => import("@/uiKit/Popup/Dialog"));
 
-const TableExerciseNavigation: FC<PropsType> = ({ item }) => {
+const TableExerciseNavigation: FC<PropsType> = ({
+  item,
+  refetch = () => {},
+}) => {
   const [isOpened, setIsOpened] = useState(false);
   const t = useTranslations("Global.Dialogs");
+  const fetchData = useApiData();
 
   const handleClose = () => {
     setIsOpened(false);
   };
 
-  const handleDelete = () => {
-    console.log(item._id);
+  const handleDelete = async () => {
+    await fetchData(`exercises/deleteExercise/${item._id}`, "DELETE", {
+      id: item._id,
+    });
+    refetch();
   };
 
   return (
