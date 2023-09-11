@@ -26,6 +26,7 @@ const CreateExercisesForm = () => {
     reset,
   } = useForm<CreateExerciseFormType>({
     resolver: useYupValidationResolver(CreateExerciseScheme),
+    mode: "onBlur",
   });
   const onReset = () => {
     reset();
