@@ -16,7 +16,8 @@ export const CreateExerciseScheme = yup.object({
       const minCount = this.parent.minCount;
       return value >= minCount && value <= maxCount;
     })
-    .test("Positive", "Errors.MoreThanZero", (value) => value > 0),
+    .test("Positive", "Errors.MoreThanZero", (value) => value > 0)
+    .integer("Errors.Integer"),
   minCount: yup
     .number()
     .required("Errors.Required")
@@ -25,17 +26,20 @@ export const CreateExerciseScheme = yup.object({
       const maxCount = this.parent.maxCount; // Access maxCount from the parent object
       return value <= maxCount - 2;
     })
-    .test("Positive", "Errors.MoreThanZero", (value) => value > 0),
+    .test("Positive", "Errors.MoreThanZero", (value) => value > 0)
+    .integer("Errors.Integer"),
   maxCount: yup
     .number()
     .required("Errors.Required")
     .typeError("Errors.Number")
-    .test("Positive", "Errors.MoreThanZero", (value) => value > 0),
+    .test("Positive", "Errors.MoreThanZero", (value) => value > 0)
+    .integer("Errors.Integer"),
   countUp: yup
     .number()
     .required("Errors.Required")
     .typeError("Errors.Number")
-    .test("Positive", "Errors.MoreThanZero", (value) => value > 0),
+    .test("Positive", "Errors.MoreThanZero", (value) => value > 0)
+    .integer("Errors.Integer"),
   weightUp: yup
     .number()
     .required("Errors.Required")

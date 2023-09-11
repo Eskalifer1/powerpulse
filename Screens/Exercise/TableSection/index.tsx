@@ -6,9 +6,11 @@ import { ExerciseType } from "@/types/Exercise";
 import { Loader } from "@/uiKit/Loader/style";
 import { exerciseTableHeaders } from "@/utils/consts/exerciseTableHeaders";
 import { useGetData } from "@/utils/hooks/useGetData";
+import { useTranslations } from "next-intl";
 import { ExerciseTableSectionWrap } from "./style";
 
 const ExerciseTableSection = () => {
+  const t = useTranslations("Global.TableHeaders");
   const { data, isLoading, isFetching, refetch } =
     useGetData<ExerciseType[]>("exercises/users");
 
@@ -18,7 +20,7 @@ const ExerciseTableSection = () => {
       <Table
         items={data || []}
         headersTitle={exerciseTableHeaders}
-        navigationColumn="Management"
+        navigationColumn={t("Management")}
         refetch={refetch}
         navigationRow={TableExerciseNavigation}
       />

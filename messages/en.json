@@ -42,6 +42,16 @@
       "Description": "Are u sure?",
       "Close": "Close",
       "Delete": "Delete"
+    },
+    "TableHeaders": {
+      "Name": "Name",
+      "Count": "Count",
+      "Weight": "Weight",
+      "Minimum Count": "Minimum Count",
+      "Maximum Count": "Maximum Count",
+      "Count Up": "Count Up",
+      "Weight Up": "Weight Up",
+      "Management": "Management"
     }
   },
   "Footer": {
@@ -143,7 +153,8 @@
       "Number": "Not a number",
       "MinCountMaxCountError": "The minimum value must be at least 2 times lower than the maximum value",
       "CountError": "The number of repetitions must be less than the 'Maximum number of repetitions' and more than the 'Minimum number of repetitions'",
-      "MoreThanZero": "The number must be greater than 0"
+      "MoreThanZero": "The number must be greater than 0",
+      "Integer": "The number must be an integer"
     },
     "Notification": {
       "Created": "Exercise has been successfully created",

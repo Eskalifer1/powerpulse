@@ -1,4 +1,5 @@
 import { tableHeaderType } from "@/types/TableHeaderType";
+import { useTranslations } from "next-intl";
 import { FC } from "react";
 import { TableTh } from "./style";
 
@@ -7,7 +8,9 @@ interface PropsType {
 }
 
 const TableHeadItem: FC<PropsType> = ({ headTitle }) => {
-  return <TableTh>{headTitle.name}</TableTh>;
+  const t = useTranslations("Global.TableHeaders");
+
+  return <TableTh>{t(headTitle.name)}</TableTh>;
 };
 
 export default TableHeadItem;
