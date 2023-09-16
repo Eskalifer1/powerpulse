@@ -11,7 +11,7 @@ export const TransferListColumnWrap = styled.div`
 
   border-radius: 0.25rem;
   width: 100%;
-  max-width: 30rem;
+  max-width: min(50%, 30rem);
   max-height: 45rem;
 `;
 
@@ -21,7 +21,9 @@ export const TransferListColumnTitleWrap = styled.div`
   padding: var(--step--1);
 `;
 
-export const TransferListColumnTitle = styled.h3``;
+export const TransferListColumnTitle = styled.h4`
+  font-size: var(--fs-lg);
+`;
 
 export const TransferListColumnDropableWrap = styled.div`
   display: flex;
@@ -32,4 +34,5 @@ export const TransferListColumnDropableWrap = styled.div`
   padding-block-start: 2rem;
   padding-block-end: 4rem;
   overflow: auto;
+  margin-top: auto;
 `;

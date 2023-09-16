@@ -3,7 +3,7 @@ import withAuth, { NextRequestWithAuth } from "next-auth/middleware";
 import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
 
-const locales = ["en", "uk"];
+export const locales = ["en", "uk"];
 const privatePages = [
   "/exercises",
   "/exercises/:path*",
