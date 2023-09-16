@@ -3,7 +3,7 @@ import { MetadataRoute } from "next";
 
 const URL = "https://powerpulse.vercel.app/";
 
-const links = ["signUp", ""]
+const links = ["/signUp", ""];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   let sitemapData: MetadataRoute.Sitemap = [];
