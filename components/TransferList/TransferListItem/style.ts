@@ -9,6 +9,7 @@ type PropsType = {
 export const TransferListItemWrap = styled.div<PropsType>`
   display: flex;
   align-items: center;
+  flex: none;
   min-height: 4rem;
   background-color: var(--secondary-color);
   border-radius: 0.25rem;

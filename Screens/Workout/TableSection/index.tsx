@@ -35,8 +35,13 @@ const TableSection = () => {
           navigationColumn={t("AdditionalColumn")}
           navigationRow={TableWorkoutRowNavigation}
           globalNavigation={
-            <WorkoutTableNavigation id={training._id} refetch={refetch} />
+            <WorkoutTableNavigation
+              id={training._id}
+              refetch={refetch}
+              item={training}
+            />
           }
+          key={training._id}
         />
       ))}
     </TableSectionWrap>

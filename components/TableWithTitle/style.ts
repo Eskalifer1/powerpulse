@@ -21,7 +21,7 @@ export const TableWithTitleTitleWrap = styled.div`
   background: var(--secondary-color);
   border: 2px solid var(--text-color);
   border-bottom: none;
-  padding-inline: 0.5rem;
+  padding: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;

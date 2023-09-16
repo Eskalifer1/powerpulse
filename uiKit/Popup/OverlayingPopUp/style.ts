@@ -28,7 +28,3 @@ export const OverlayingPopUpOverlay = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   cursor: pointer;
 `;
-
-export const OverlayingPopUpChildrenWrap = styled.div`
-  z-index: 2;
-`;

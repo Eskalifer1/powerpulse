@@ -41,7 +41,8 @@
       "Title": "Confirm Dialog",
       "Description": "Are u sure?",
       "Close": "Close",
-      "Delete": "Delete"
+      "Delete": "Delete",
+      "Edit": "Edit Dialog"
     },
     "TableHeaders": {
       "Name": "Name",
@@ -146,7 +147,9 @@
     },
     "Buttons": {
       "Reset": "Reset fields",
-      "Submit": "Create exercise"
+      "Submit": "Create exercise",
+      "Edit": "Edit exercise",
+      "Close": "Close modal"
     },
     "Errors": {
       "Required": "This field is required",
@@ -158,7 +161,8 @@
     },
     "Notification": {
       "Created": "Exercise has been successfully created",
-      "Error": "Error creating an exercise"
+      "Error": "Error creating an exercise",
+      "Success": "Success"
     },
     "Title": "Create Exercise",
     "GoToExcercises": "Get to excercises"
@@ -187,14 +191,17 @@
     },
     "Buttons": {
       "Reset": "Reset fields",
-      "Submit": "Create workout"
+      "Submit": "Create workout",
+      "Close": "Close modal",
+      "Edit": "Edit workout"
     },
     "Errors": {
       "Required": "This field is required"
     },
     "Notification": {
       "Created": "Workout has been successfully created",
-      "Error": "Error creating an workout"
+      "Error": "Error creating an workout",
+      "Edit": "Workout has been successfully edited"
     },
     "TransferList": {
       "TitleCreatedExercises": "Created Exercises",

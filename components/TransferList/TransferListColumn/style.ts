@@ -27,7 +27,6 @@ export const TransferListColumnDropableWrap = styled.div`
   display: flex;
   flex-direction: column;
   padding-inline: var(--step--2);
-  padding-bottom: var(--step-3);
   height: 25rem;
   width: 100%;
   padding-block-start: 2rem;

@@ -1,5 +1,6 @@
-"use client"
+"use client";
 
+import { mediaQueries } from "@/utils/media";
 import styled from "styled-components";
 
 export const CreateFormButtonsWrap = styled.div`
@@ -9,5 +10,13 @@ export const CreateFormButtonsWrap = styled.div`
   margin-top: 1.5rem;
   & :not(:first-child) {
     margin-left: 1rem;
+  }
+
+  ${mediaQueries.phoneMd} {
+    flex-direction: column;
+    & :not(:first-child) {
+      margin-left: 0rem;
+      margin-top: 1rem;
+    }
   }
 `;
