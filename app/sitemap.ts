@@ -1,10 +1,9 @@
 import { locales } from "@/middleware";
-import { LinkEnum } from "@/utils/enum/links";
 import { MetadataRoute } from "next";
 
 const URL = "https://powerpulse.vercel.app/";
 
-const links = Object.values(LinkEnum);
+const links = ["signUp", ""]
 
 export default function sitemap(): MetadataRoute.Sitemap {
   let sitemapData: MetadataRoute.Sitemap = [];
