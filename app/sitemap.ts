@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     links.forEach((route) => {
       sitemapData.push({
         url: `${URL}${locale}${route}`,
-        lastModified: new Date(),
+        lastModified: new Date().toISOString(),
       });
     })
   );
