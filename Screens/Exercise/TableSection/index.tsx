@@ -15,10 +15,15 @@ const ExerciseTableSection = () => {
     useGetData<ExerciseType[]>("exercises/users");
 
   if (isLoading || isFetching) return <Loader $marginTop="10rem" />;
+  const sortedData = [...(data || [])].sort((a, b) => {
+    return a.name.localeCompare(b.name);
+  });
+
+  console.log(sortedData);
   return (
     <ExerciseTableSectionWrap>
       <Table
-        items={data || []}
+        items={sortedData}
         headersTitle={exerciseTableHeaders}
         navigationColumn={t("Management")}
         refetch={refetch}

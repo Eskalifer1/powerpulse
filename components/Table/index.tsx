@@ -1,6 +1,6 @@
 import { TableProps } from "@/types/ui/Table";
 import { useTranslations } from "next-intl";
-import { FC } from "react";
+import { FC, memo } from "react";
 import TableHeadItem from "./TableHeadItem";
 import { TableTh } from "./TableHeadItem/style";
 import TableRow from "./TableRow";
@@ -45,4 +45,4 @@ const Table: FC<TableProps> = ({
   );
 };
 
-export default Table;
+export default memo(Table);

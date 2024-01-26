@@ -25,20 +25,22 @@ const TransferListColumn: FC<PropsType> = ({ column, dataEntity = [] }) => {
       </TransferListColumnTitleWrap>
 
       <StrictModeDroppable droppableId={column.id}>
-        {(droppableProvided) => (
-          <TransferListColumnDropableWrap
-            ref={droppableProvided.innerRef}
-            {...droppableProvided.droppableProps}
-          >
-            {dataEntity.map((exercise, index: number) => (
-              <TransferListItem
-                exercise={exercise}
-                index={index}
-                key={exercise._id}
-              />
-            ))}
-          </TransferListColumnDropableWrap>
-        )}
+        {(droppableProvided) =>
+          (
+            <TransferListColumnDropableWrap
+              ref={droppableProvided.innerRef}
+              {...droppableProvided.droppableProps}
+            >
+              {dataEntity.map((exercise, index: number) => (
+                <TransferListItem
+                  exercise={exercise}
+                  index={index}
+                  key={exercise._id}
+                />
+              ))}
+            </TransferListColumnDropableWrap>
+          ) as any
+        }
       </StrictModeDroppable>
     </TransferListColumnWrap>
   );

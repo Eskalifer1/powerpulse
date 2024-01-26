@@ -3,7 +3,7 @@
 import { DefaultButtonFlex } from "@/styles/DefaultButtonFlex";
 import { ExerciseType } from "@/types/Exercise";
 import { useApiData } from "@/utils/hooks/useApiData";
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 import {
   TableWorkoutNavigationBiMinusCircle,
   TableWorkoutNavigationBiPlusCircle,
@@ -13,20 +13,26 @@ import {
 interface PropsType {
   item: ExerciseType;
   refetch?: () => void;
+  setDisabledRow: Dispatch<SetStateAction<boolean>>;
 }
 
 const TableWorkoutRowNavigation: FC<PropsType> = ({
   item,
   refetch = () => {},
+  setDisabledRow,
 }) => {
   const updateFucntion = useApiData();
 
   const handleIncrease = async () => {
+    setDisabledRow(true);
     await updateFucntion(`exercises/increaseExercise/${item._id}`, "PATCH");
+    setDisabledRow(false);
     refetch();
   };
   const handleteDecrease = async () => {
+    setDisabledRow(true);
     await updateFucntion(`exercises/decreaseExercise/${item._id}`, "PATCH");
+    setDisabledRow(false);
     refetch();
   };
 

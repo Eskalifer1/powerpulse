@@ -1,13 +1,16 @@
 import ExerciseScreen from "@/Screens/Exercise";
 import { Metadata } from "next";
-import { getTranslator } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
-  const t = await getTranslator(locale, "ExercisesPage.MetaData");
+  const t = await getTranslations({
+    locale,
+    namespace: "ExercisesPage.MetaData",
+  });
 
   return {
     title: t("Title"),

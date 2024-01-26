@@ -2,25 +2,20 @@
 
 import TableWithTitle from "@/components/TableWithTitle";
 import { WorkoutType } from "@/types/Workout";
-import { Loader } from "@/uiKit/Loader/style";
 import { workoutTableHeaders } from "@/utils/consts/exerciseTableHeaders";
 import { useGetData } from "@/utils/hooks/useGetData";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 import TableWorkoutRowNavigation from "./TableWorkoutRowNavigation";
 import WorkoutTableNavigation from "./WorkoutTableNavigation";
 import { NoWorkoutTitle, TableSectionWrap } from "./style";
 
 const TableSection = () => {
   const t = useTranslations("WorkoutPage");
-  const {
-    data = [],
-    isLoading,
-    isFetching,
-    refetch,
-  } = useGetData<WorkoutType[]>("exercises/users/training");
-
-  if (isLoading || isFetching) return <Loader $marginTop="2rem" />;
-
+  const { data = [], refetch } = useGetData<WorkoutType[]>(
+    "exercises/users/training"
+  );
+  const [isDisabled, setIsDisabled] = useState<string | null>(null);
   if (data?.length <= 0)
     return <NoWorkoutTitle>{t("NoWorkout")}</NoWorkoutTitle>;
 
@@ -34,11 +29,13 @@ const TableSection = () => {
           headersTitle={workoutTableHeaders}
           navigationColumn={t("AdditionalColumn")}
           navigationRow={TableWorkoutRowNavigation}
+          isDisabled={isDisabled === training._id}
           globalNavigation={
             <WorkoutTableNavigation
               id={training._id}
               refetch={refetch}
               item={training}
+              setIsDisabled={setIsDisabled}
             />
           }
           key={training._id}

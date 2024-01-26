@@ -25,8 +25,7 @@ export const useApiData = () => {
       return response;
     } catch (e) {
       const error = e as AxiosError<ResponseError>;
-      const errorMessage =
-        error.response?.data?.message[0] || "An error occurred";
+      const errorMessage = "An error occurred";
       toast.error(errorMessage);
       throw error;
     }

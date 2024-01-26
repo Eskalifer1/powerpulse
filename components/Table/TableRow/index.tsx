@@ -1,12 +1,16 @@
 import { ExerciseType } from "@/types/Exercise";
 import { tableHeaderType } from "@/types/TableHeaderType";
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction, memo, useState } from "react";
 import { TableTd, TableTr } from "./style";
 
 interface PropsType {
   item: ExerciseType;
   titleHeaders: tableHeaderType<ExerciseType>[];
-  navigationRow?: FC<{ item: ExerciseType; refetch?: () => void }>;
+  navigationRow?: FC<{
+    item: ExerciseType;
+    refetch?: () => void;
+    setDisabledRow: Dispatch<SetStateAction<boolean>>;
+  }>;
   refetch?: () => void;
 }
 
@@ -16,17 +20,27 @@ const TableRow: FC<PropsType> = ({
   navigationRow: NavigationRow,
   refetch,
 }) => {
+  const [disabled, setDisabled] = useState(false);
+
   return (
-    <TableTr>
+    <TableTr $isDisabled={disabled}>
       {titleHeaders.map((columnItem, index) => {
         const columnValue = item[columnItem.value];
         return <TableTd key={index}>{columnValue}</TableTd>;
       })}
       {NavigationRow && (
-        <TableTd>{<NavigationRow item={item} refetch={refetch} />}</TableTd>
+        <TableTd>
+          {
+            <NavigationRow
+              item={item}
+              refetch={refetch}
+              setDisabledRow={setDisabled}
+            />
+          }
+        </TableTd>
       )}
     </TableTr>
   );
 };
 
-export default TableRow;
+export default memo(TableRow);

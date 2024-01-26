@@ -1,12 +1,15 @@
 import WorkoutScreen from "@/Screens/Workout";
-import { getTranslator } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
-  const t = await getTranslator(locale, "WorkoutPage.MetaData");
+  const t = await getTranslations({
+    locale,
+    namespace: "WorkoutPage.MetaData",
+  });
 
   return {
     title: t("Title"),

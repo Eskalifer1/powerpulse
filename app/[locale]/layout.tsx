@@ -7,7 +7,7 @@ import QueryProvider from "@/providers/QueryClientProvider";
 import { Spacer } from "@/uiKit/Spacer/style";
 import { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
-import { getTranslator } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { Poppins } from "next/font/google";
 import { notFound } from "next/navigation";
 import { Toaster } from "react-hot-toast";
@@ -24,7 +24,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }) {
-  const t = await getTranslator(locale, "MetaDataGlobal");
+  const t = await getTranslations({ locale, namespace: "MetaDataGlobal" });
 
   return {
     keywords: t("keywords"),

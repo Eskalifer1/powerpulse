@@ -33,28 +33,34 @@ const TransferList = forwardRef<TransferListRefElementType, PropsType>(
 
     return (
       <DragDropContext onDragEnd={onDragEnd}>
-        <TransferListWrap>
-          {state.columnOrder.map((columnId) => {
-            const column = state.columns[columnId];
-            const tasks = column.columnIds.map((taskId) =>
-              getElementByValueInArray<ExerciseType>(
-                state.listData,
-                taskId,
-                "_id"
-              )
-            );
+        {
+          (
+            <TransferListWrap>
+              {state.columnOrder.map((columnId) => {
+                const column = state.columns[columnId];
+                const tasks = column.columnIds.map((taskId) =>
+                  getElementByValueInArray<ExerciseType>(
+                    state.listData,
+                    taskId,
+                    "_id"
+                  )
+                );
 
-            return (
-              <TransferListColumn
-                key={column.id}
-                column={column}
-                dataEntity={
-                  tasks.filter((task) => task !== undefined) as ExerciseType[]
-                }
-              />
-            );
-          })}
-        </TransferListWrap>
+                return (
+                  <TransferListColumn
+                    key={column.id}
+                    column={column}
+                    dataEntity={
+                      tasks.filter(
+                        (task) => task !== undefined
+                      ) as ExerciseType[]
+                    }
+                  />
+                );
+              })}
+            </TransferListWrap>
+          ) as any
+        }
       </DragDropContext>
     );
   }

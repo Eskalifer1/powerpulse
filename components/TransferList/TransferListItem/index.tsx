@@ -13,16 +13,18 @@ interface PropsType {
 const TransferListItem: FC<PropsType> = ({ exercise, index }) => {
   return (
     <Draggable draggableId={`${exercise._id}`} index={index}>
-      {(draggableProvided, draggableSnapshot) => (
-        <TransferListItemWrap
-          $isDraging={draggableSnapshot.isDragging}
-          ref={draggableProvided.innerRef}
-          {...draggableProvided.draggableProps}
-          {...draggableProvided.dragHandleProps}
-        >
-          <TransferListItemText>{exercise.name}</TransferListItemText>
-        </TransferListItemWrap>
-      )}
+      {(draggableProvided, draggableSnapshot) =>
+        (
+          <TransferListItemWrap
+            $isDraging={draggableSnapshot.isDragging}
+            ref={draggableProvided.innerRef}
+            {...draggableProvided.draggableProps}
+            {...draggableProvided.dragHandleProps}
+          >
+            <TransferListItemText>{exercise.name}</TransferListItemText>
+          </TransferListItemWrap>
+        ) as any
+      }
     </Draggable>
   );
 };

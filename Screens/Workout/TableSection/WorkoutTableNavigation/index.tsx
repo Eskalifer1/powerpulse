@@ -8,7 +8,8 @@ import Modal from "@/uiKit/Popup/Modal";
 import { handleClose } from "@/utils/functions/handleClose";
 import { useApiData } from "@/utils/hooks/useApiData";
 import { useTranslations } from "next-intl";
-import { FC, useState } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
+import { TableWorkoutNavigationBiPlusCircle } from "../TableWorkoutRowNavigation/style";
 import {
   TableWorkoutNavigationBiEditAlt,
   TableWorkoutNavigationBiTrash,
@@ -19,9 +20,15 @@ interface PropsType {
   id: string;
   refetch: () => void;
   item: WorkoutType;
+  setIsDisabled: Dispatch<SetStateAction<string | null>>;
 }
 
-const WorkoutTableNavigation: FC<PropsType> = ({ id, refetch, item }) => {
+const WorkoutTableNavigation: FC<PropsType> = ({
+  id,
+  refetch,
+  item,
+  setIsDisabled,
+}) => {
   const [isOpened, setIsOpened] = useState(false);
   const [modalIsOpened, setModalIsOpened] = useState(false);
 
@@ -33,12 +40,30 @@ const WorkoutTableNavigation: FC<PropsType> = ({ id, refetch, item }) => {
     refetch();
     setIsOpened(false);
   };
+
+  const handleUpdateWorkout = async () => {
+    setIsDisabled(id);
+    const value = await fetchData("exercises/updateExercises", "PATCH", {
+      trainingId: id,
+    });
+    setIsDisabled(null);
+    console.log(value);
+    refetch();
+  };
+
   return (
     <>
       <TableWorkoutNavigationButtonsWrap>
         <DefaultButtonFlex
           $size="md"
           $type="primary"
+          onClick={handleUpdateWorkout}
+        >
+          <TableWorkoutNavigationBiPlusCircle />
+        </DefaultButtonFlex>
+        <DefaultButtonFlex
+          $size="md"
+          $type="secondary"
           onClick={() => setModalIsOpened((prev) => !prev)}
         >
           <TableWorkoutNavigationBiEditAlt />

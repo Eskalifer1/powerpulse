@@ -1,10 +1,10 @@
 "use client";
 
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 interface PropsType {
-  children: ReactNode;
+  children: any;
 }
 
 const Portal: FC<PropsType> = ({ children }) => {

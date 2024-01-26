@@ -1,12 +1,13 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { usePathname } from "next-intl/client";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import { LocaleSwitcherLink, LocaleSwitcherWrap } from "./style";
 
 const LocaleSwitcher = () => {
+  const locales = ["en", "uk"] as const;
+  const { usePathname } = createSharedPathnamesNavigation({ locales });
   const pathname = usePathname();
-
   const locale = useLocale();
 
   return (

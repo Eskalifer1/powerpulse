@@ -40,6 +40,7 @@ const EditWorkoutModal: FC<PropsType> = ({ initialData, refetch, onClose }) => {
       ResponseEnum.SUCCESS,
       t("Notification.Edit")
     );
+    onClose();
     refetch();
   };
 

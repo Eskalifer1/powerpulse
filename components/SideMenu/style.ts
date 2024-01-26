@@ -11,8 +11,6 @@ export const SideMenuWrap = styled.aside<PropsType>`
   flex-direction: column;
   align-items: center;
 
-  transition: 0.5s;
-
   min-height: var(--height-screen);
   max-width: max-content;
   ${(props) =>
