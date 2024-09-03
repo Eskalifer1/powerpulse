@@ -2,6 +2,7 @@
 
 import TableWithTitle from "@/components/TableWithTitle";
 import { WorkoutType } from "@/types/Workout";
+import { Loader } from "@/uiKit/Loader/style";
 import { workoutTableHeaders } from "@/utils/consts/exerciseTableHeaders";
 import { useGetData } from "@/utils/hooks/useGetData";
 import { useTranslations } from "next-intl";
@@ -12,10 +13,15 @@ import { NoWorkoutTitle, TableSectionWrap } from "./style";
 
 const TableSection = () => {
   const t = useTranslations("WorkoutPage");
-  const { data = [], refetch } = useGetData<WorkoutType[]>(
-    "exercises/users/training"
-  );
+  const {
+    data = [],
+    refetch,
+    isLoading,
+  } = useGetData<WorkoutType[]>("exercises/users/training");
   const [isDisabled, setIsDisabled] = useState<string | null>(null);
+
+  if (isLoading) return <Loader />;
+
   if (data?.length <= 0)
     return <NoWorkoutTitle>{t("NoWorkout")}</NoWorkoutTitle>;
 

@@ -38,6 +38,8 @@ export const authConfig: AuthOptions = {
           password: credentials.password,
         })) as LoginServiceResponse;
 
+        console.log(userData, "userData")
+
         if (userData.status !== 201) return null;
 
         return {

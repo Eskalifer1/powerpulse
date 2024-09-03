@@ -36,6 +36,7 @@ const EditExercisesModal: FC<PropsType> = ({
       ResponseEnum.SUCCESS,
       t("Notification.Success")
     );
+    onClose();
     refetch();
   };
 

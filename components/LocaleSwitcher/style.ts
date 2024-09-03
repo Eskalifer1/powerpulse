@@ -13,6 +13,7 @@ export const LocaleSwitcherWrap = styled.div`
 `;
 const locales = ["en", "uk"] as const;
 const { Link } = createSharedPathnamesNavigation({ locales });
+
 export const LocaleSwitcherLink = styled(Link)<LocaleSwitcherLinkType>`
   padding-inline: 0.25rem;
   &:hover,

@@ -11,15 +11,15 @@ import { ExerciseTableSectionWrap } from "./style";
 
 const ExerciseTableSection = () => {
   const t = useTranslations("Global.TableHeaders");
-  const { data, isLoading, isFetching, refetch } =
+  const { data, isLoading, refetch } =
     useGetData<ExerciseType[]>("exercises/users");
 
-  if (isLoading || isFetching) return <Loader $marginTop="10rem" />;
+  if (isLoading) return <Loader $marginTop="10rem" />;
+
   const sortedData = [...(data || [])].sort((a, b) => {
     return a.name.localeCompare(b.name);
   });
 
-  console.log(sortedData);
   return (
     <ExerciseTableSectionWrap>
       <Table

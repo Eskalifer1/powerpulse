@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const authOption = {
-  baseURL: "https://alive-blue-narwhal.cyclic.app/",
+  baseURL: "https://powerpulse-ie67.onrender.com/",
   headers: { "Content-Type": "application/json" },
 };
 
