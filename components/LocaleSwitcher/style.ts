@@ -1,5 +1,4 @@
 "use client";
-import { createSharedPathnamesNavigation } from "next-intl/navigation";
 
 import styled from "styled-components";
 
@@ -11,14 +10,13 @@ export const LocaleSwitcherWrap = styled.div`
   border-radius: 0.25rem;
   border: 2px solid var(--text-color);
 `;
-const locales = ["en", "uk"] as const;
-const { Link } = createSharedPathnamesNavigation({ locales });
 
-export const LocaleSwitcherLink = styled(Link)<LocaleSwitcherLinkType>`
+export const LocaleSwitcherLink = styled.span<LocaleSwitcherLinkType>`
   padding-inline: 0.25rem;
   &:hover,
   &:focus {
     color: var(--primary-color);
   }
+  cursor: pointer;
   ${(props) => props.$active && "color: var(--primary-color)"}
 `;

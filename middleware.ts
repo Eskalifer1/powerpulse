@@ -2,6 +2,7 @@ import { getToken } from "next-auth/jwt";
 import withAuth, { NextRequestWithAuth } from "next-auth/middleware";
 import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
+import { routing } from "./i18n/routing";
 
 export const locales = ["en", "uk"];
 const privatePages = [
@@ -12,11 +13,7 @@ const privatePages = [
 ];
 const deniedPageForAuthorized = ["/signUp"];
 
-const intlMiddleware = createMiddleware({
-  locales,
-  defaultLocale: "uk",
-  localePrefix: "always",
-});
+const intlMiddleware = createMiddleware(routing);
 
 const authMiddleware = withAuth(
   async function onSuccess(req: NextRequestWithAuth) {
@@ -50,37 +47,6 @@ const authMiddleware = withAuth(
     },
   }
 );
-
-// const authMiddleware = withAuth(
-//   function middleware(request: NextRequestWithAuth) {
-//     if (
-//       forbiddenPaths.some(path => request.nextUrl.pathname.startsWith(path)) &&
-//       !request.nextauth.token?.role
-//     ) {
-//       return NextResponse.redirect(new URL("/denied", request.url));
-//     }
-//     return intlMiddleware(request);
-//   },
-//   {
-//     callbacks: {
-//       authorized: ({ token }) => !!token || !token,
-//     },
-//   }
-// );
-
-// export default function middleware(req: NextRequest) {
-//   const publicPathnameRegex = RegExp(
-//     `^(/(${locales.join("|")}))?(${publicPages.join("|")})?/?$`,
-//     "i"
-//   );
-//   const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
-
-//   if (isPublicPage) {
-//     return intlMiddleware(req);
-//   } else {
-//     return (authMiddleware as any)(req);
-//   }
-// }
 
 export default function middleware(req: NextRequest) {
   return (authMiddleware as any)(req);

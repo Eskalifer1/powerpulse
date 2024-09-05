@@ -7,9 +7,8 @@ import QueryProvider from "@/providers/QueryClientProvider";
 import { Spacer } from "@/uiKit/Spacer/style";
 import { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
-import { getTranslations } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 import { Poppins } from "next/font/google";
-import { notFound } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
@@ -34,26 +33,19 @@ export async function generateMetadata({
 
 export default async function RootLayout({
   children,
-  params,
+  params: { locale },
 }: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const locale = params.locale;
-
-  let messages;
-  try {
-    messages = (await import(`../../messages/${locale}.json`)).default;
-  } catch (error) {
-    notFound();
-  }
+  const messages = await getMessages();
 
   return (
     <html lang={locale}>
       <AuthProvider>
         <QueryProvider>
           <StyledComponentsRegistry>
-            <NextIntlClientProvider locale={locale} messages={messages}>
+            <NextIntlClientProvider messages={messages}>
               <body className={poppins.className}>
                 <SideMenu>
                   <UserInfo />
