@@ -1,60 +1,48 @@
 "use client";
 
-import TransferExercises from "@/Screens/WorkoutCreate/TransferExercises";
-import { StyledForm } from "@/styles/StyledForm";
-import { TransferListRefElementType } from "@/types/TransferListGetElementType";
+import Form, { FormProps } from "@/components/Form";
+import FormField from "@/components/Form/Field";
+import TransferList from "@/components/TransferList";
+import { ExerciseType } from "@/types/Exercise";
 import { WorkoutType } from "@/types/Workout";
-import { Input, InputBlock, InputErrorText } from "@/uiKit/Input/style";
+import { InputBlock } from "@/uiKit/Input/style";
 import { Label } from "@/uiKit/Label/style";
-import useYupValidationResolver from "@/utils/hooks/useYupResolver";
+import { useGetData } from "@/utils/hooks/useGetData";
 import { CreateWorkoutScheme } from "@/utils/schemas/CreateWorkoutScheme";
 import { useTranslations } from "next-intl";
-import React, { ReactNode, forwardRef } from "react";
-import { useForm } from "react-hook-form";
+import { memo } from "react";
 
-type PropsType = {
-  initialValues?: WorkoutType;
-  onSuccess: (data: WorkoutType) => void;
-  children: ReactNode;
-  transferListSecondColumn?: string[];
+interface PropsType
+  extends Omit<FormProps<WorkoutType>, "children" | "validationSchema"> {}
+
+const CreateWorkoutForm = ({ ...props }: PropsType) => {
+  const t = useTranslations("CreateWorkoutPage");
+
+  const { data, isLoading } = useGetData<ExerciseType[]>("exercises/users");
+
+  return (
+    <Form validationSchema={CreateWorkoutScheme} {...props}>
+      <FormField
+        name="name"
+        label={t("Labels.Name")}
+        placeholder={t("Placeholders.Name")}
+      />
+      <InputBlock>
+        <Label>{t("Labels.Exercises")}</Label>
+        <TransferList
+          name="exercisesId"
+          allItems={data || []}
+          isLoading={isLoading}
+          renderItem={(exercise) => exercise.name}
+          getItemId={(exercise) => exercise._id}
+          titles={{
+            available: t("TransferList.TitleCreatedExercises"),
+            selected: t("TransferList.TitleWorkoutExercises"),
+          }}
+        />
+      </InputBlock>
+    </Form>
+  );
 };
 
-const CreateWorkoutForm = forwardRef<TransferListRefElementType, PropsType>(
-  ({ initialValues, onSuccess, children, transferListSecondColumn }, ref) => {
-    const t = useTranslations("CreateWorkoutPage");
-
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-      reset,
-    } = useForm<WorkoutType>({
-      resolver: useYupValidationResolver(CreateWorkoutScheme),
-      defaultValues: initialValues,
-    });
-
-    return (
-      <StyledForm onSubmit={handleSubmit(onSuccess)}>
-        <InputBlock>
-          <Label htmlFor="name">{t("Labels.Name")}</Label>
-          <Input {...register("name")} placeholder={t("Placeholders.Name")} />
-          {errors.name && (
-            <InputErrorText>{t(errors.name.message)}</InputErrorText>
-          )}
-        </InputBlock>
-        <InputBlock>
-          <Label>{t("Labels.Exercises")}</Label>
-          <TransferExercises
-            ref={ref}
-            secondColumn={transferListSecondColumn}
-          />
-        </InputBlock>
-        {children}
-      </StyledForm>
-    );
-  }
-);
-
-CreateWorkoutForm.displayName = "CreateWorkoutForm";
-
-export default React.memo(CreateWorkoutForm);
+export default memo(CreateWorkoutForm);

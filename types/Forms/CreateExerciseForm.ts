@@ -7,7 +7,3 @@ export type CreateExerciseFormType = {
   countUp: number;
   weightUp: number;
 };
-
-export type CreateExerciseForwardRefType = {
-  reset: () => void;
-};

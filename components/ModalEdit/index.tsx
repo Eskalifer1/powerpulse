@@ -1,8 +1,6 @@
 "use client";
 
-import { CreateFormButtonsWrap } from "@/styles/CreateFormButtonsWrap";
 import { CreateExerciseFormType } from "@/types/Forms/CreateExerciseForm";
-import { DefaultButton } from "@/uiKit/button/style";
 import { ResponseEnum } from "@/utils/enum/ResponseStatus";
 import { statusManageFunction } from "@/utils/functions/StatusManage";
 import { useApiData } from "@/utils/hooks/useApiData";
@@ -41,21 +39,13 @@ const EditExercisesModal: FC<PropsType> = ({
   };
 
   return (
-    <CreateExercisesForm onSuccess={onSuccess} initialValues={initialData}>
-      <CreateFormButtonsWrap>
-        <DefaultButton
-          $type="primary"
-          $size="md"
-          type="button"
-          onClick={onClose}
-        >
-          {t("Buttons.Close")}
-        </DefaultButton>
-        <DefaultButton $type="secondary" $size="md" type="submit">
-          {t("Buttons.Edit")}
-        </DefaultButton>
-      </CreateFormButtonsWrap>
-    </CreateExercisesForm>
+    <CreateExercisesForm
+      onSubmit={onSuccess}
+      defaultValues={initialData}
+      cancelButtonText={t("Buttons.Reset")}
+      submitButtonText={t("Buttons.Submit")}
+      onCancel={onClose}
+    />
   );
 };
 

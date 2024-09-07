@@ -6,13 +6,13 @@ import { IconType } from "react-icons";
 import { TbInfoOctagon } from "react-icons/tb";
 import { ToolTipText, ToolTipWrap } from "./style";
 
-interface PropsType {
+export interface ToolTipProps {
   text: string;
   icon?: IconType;
   size?: number;
 }
 
-export const ToolTip: FC<PropsType> = ({ text, icon: Icon, size = 25 }) => {
+export const ToolTip: FC<ToolTipProps> = ({ text, icon: Icon, size = 25 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleClose = () => {

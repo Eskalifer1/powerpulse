@@ -36,6 +36,7 @@ const TableExerciseNavigation: FC<PropsType> = ({
       id: item._id,
     });
     refetch();
+    setIsOpened(false);
   };
 
   return (

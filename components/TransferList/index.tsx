@@ -1,71 +1,111 @@
-"use client";
-
-import { ExerciseType } from "@/types/Exercise";
-import { TransferListDataType } from "@/types/TransferList";
-import { TransferListRefElementType } from "@/types/TransferListGetElementType";
-import { getElementByValueInArray } from "@/utils/functions/getElementByValueInArray";
-import useTransferList from "@/utils/hooks/useTransferList";
-import dynamic from "next/dynamic";
-import React, { forwardRef, useImperativeHandle } from "react";
+import { Loader } from "@/uiKit/Loader/style";
 import { DragDropContext } from "react-beautiful-dnd";
-import { TransferListWrap } from "./style";
+import { useFormContext, useWatch } from "react-hook-form";
+import TransferListColumn from "./Column";
+import { TransferListWrap } from "./styled";
 
-const TransferListColumn = dynamic(() => import("./TransferListColumn"), {
-  ssr: false,
-});
-
-type PropsType = {
-  data: TransferListDataType<ExerciseType>;
+type ItemType = {
+  _id: string;
+  [key: string]: any;
 };
 
-const TransferList = forwardRef<TransferListRefElementType, PropsType>(
-  ({ data }, ref) => {
-    const { state, onDragEnd, setState } = useTransferList<ExerciseType>(data);
+type PropsType<T extends ItemType> = {
+  name: string;
+  allItems: T[] | undefined;
+  isLoading?: boolean;
+  renderItem: (item: T) => React.ReactNode;
+  getItemId: (item: T) => string;
+  titles: {
+    available: string;
+    selected: string;
+  };
+};
 
-    useImperativeHandle(ref, () => ({
-      getIds(string) {
-        return state.columns[string].columnIds;
-      },
-      clear() {
-        setState(data);
-      },
-    }));
+function TransferList<T extends ItemType>({
+  name,
+  allItems,
+  isLoading = false,
+  renderItem,
+  getItemId,
+  titles,
+}: PropsType<T>) {
+  const { control, setValue } = useFormContext();
+  const selectedIds = useWatch({ name, control }) || [];
 
-    return (
-      <DragDropContext onDragEnd={onDragEnd}>
-        {
-          (
-            <TransferListWrap>
-              {state.columnOrder.map((columnId) => {
-                const column = state.columns[columnId];
-                const tasks = column.columnIds.map((taskId) =>
-                  getElementByValueInArray<ExerciseType>(
-                    state.listData,
-                    taskId,
-                    "_id"
-                  )
-                );
+  if (isLoading) return <Loader />;
+  if (!allItems) return null;
 
-                return (
-                  <TransferListColumn
-                    key={column.id}
-                    column={column}
-                    dataEntity={
-                      tasks.filter(
-                        (task) => task !== undefined
-                      ) as ExerciseType[]
-                    }
-                  />
-                );
-              })}
-            </TransferListWrap>
-          ) as any
-        }
-      </DragDropContext>
-    );
-  }
-);
+  const selectedItems = selectedIds
+    .map((id: string) => allItems.find((item) => getItemId(item) === id))
+    .filter(Boolean) as T[];
+  const availableItems = allItems.filter(
+    (item) => !selectedIds.includes(getItemId(item))
+  );
 
-TransferList.displayName = "TransferList";
+  const onDragEnd = (result: any) => {
+    if (!result.destination) return;
 
-export default React.memo(TransferList);
+    const { source, destination } = result;
+
+    if (source.droppableId === destination.droppableId) {
+      // Reordering within the same list
+      const items = Array.from(
+        source.droppableId === "available" ? availableItems : selectedItems
+      );
+      const [reorderedItem] = items.splice(source.index, 1);
+      items.splice(destination.index, 0, reorderedItem);
+
+      if (source.droppableId === "selected") {
+        setValue(
+          name,
+          items.map((item) => getItemId(item))
+        );
+      }
+    } else {
+      const sourceItems = Array.from(
+        source.droppableId === "available" ? availableItems : selectedItems
+      );
+      const destItems = Array.from(
+        destination.droppableId === "available" ? availableItems : selectedItems
+      );
+      const [movedItem] = sourceItems.splice(source.index, 1);
+      destItems.splice(destination.index, 0, movedItem);
+
+      if (destination.droppableId === "selected") {
+        setValue(
+          name,
+          destItems.map((item) => getItemId(item))
+        );
+      } else {
+        setValue(
+          name,
+          sourceItems.map((item) => getItemId(item))
+        );
+      }
+    }
+  };
+
+  return (
+    <DragDropContext onDragEnd={onDragEnd}>
+      {/* @ts-ignore */}
+      <TransferListWrap>
+        <TransferListColumn
+          title={titles.available}
+          droppableId="available"
+          items={availableItems}
+          renderItem={renderItem}
+          getItemId={getItemId}
+        />
+        <TransferListColumn
+          title={titles.selected}
+          droppableId="selected"
+          items={selectedItems}
+          renderItem={renderItem}
+          getItemId={getItemId}
+        />
+      </TransferListWrap>
+    </DragDropContext>
+  );
+}
+
+export default TransferList;
