@@ -3,7 +3,8 @@
 import { DefaultButtonFlex } from "@/styles/DefaultButtonFlex";
 import { ExerciseType } from "@/types/Exercise";
 import { useApiData } from "@/utils/hooks/useApiData";
-import { Dispatch, FC, SetStateAction } from "react";
+import { useInvalidateQueries } from "@/utils/hooks/useGetData";
+import { FC } from "react";
 import {
   TableWorkoutNavigationBiMinusCircle,
   TableWorkoutNavigationBiPlusCircle,
@@ -12,28 +13,24 @@ import {
 
 interface PropsType {
   item: ExerciseType;
-  refetch?: () => void;
-  setDisabledRow: Dispatch<SetStateAction<boolean>>;
+  setDisabledRow: (value: boolean) => void;
 }
 
-const TableWorkoutRowNavigation: FC<PropsType> = ({
-  item,
-  refetch = () => {},
-  setDisabledRow,
-}) => {
+const TableWorkoutRowNavigation: FC<PropsType> = ({ item, setDisabledRow }) => {
   const updateFucntion = useApiData();
+  const invalidateData = useInvalidateQueries();
 
   const handleIncrease = async () => {
     setDisabledRow(true);
     await updateFucntion(`exercises/increaseExercise/${item._id}`, "PATCH");
     setDisabledRow(false);
-    refetch();
+    invalidateData("exercises/users/training");
   };
   const handleteDecrease = async () => {
     setDisabledRow(true);
     await updateFucntion(`exercises/decreaseExercise/${item._id}`, "PATCH");
     setDisabledRow(false);
-    refetch();
+    invalidateData("exercises/users/training");
   };
 
   return (

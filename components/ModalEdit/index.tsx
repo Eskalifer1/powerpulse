@@ -10,13 +10,13 @@ import CreateExercisesForm from "../Forms/CreateExercise";
 
 type PropsType = {
   initialData: CreateExerciseFormType;
-  refetch: () => void;
+  onSubmit: () => void;
   onClose: () => void;
 };
 
 const EditExercisesModal: FC<PropsType> = ({
   initialData,
-  refetch,
+  onSubmit,
   onClose,
 }) => {
   const t = useTranslations("ExercisesCreatePage");
@@ -35,7 +35,7 @@ const EditExercisesModal: FC<PropsType> = ({
       t("Notification.Success")
     );
     onClose();
-    refetch();
+    onSubmit();
   };
 
   return (

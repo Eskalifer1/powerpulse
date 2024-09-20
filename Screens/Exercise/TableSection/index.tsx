@@ -1,18 +1,45 @@
 "use client";
 
+import Table, { ITableColumn } from "@/components/TableT";
 import TableExerciseNavigation from "@/Screens/Exercise/TableSection/TableExerciseNavigation";
-import Table from "@/components/Table";
 import { ExerciseType } from "@/types/Exercise";
 import { Loader } from "@/uiKit/Loader/style";
-import { exerciseTableHeaders } from "@/utils/consts/exerciseTableHeaders";
 import { useGetData } from "@/utils/hooks/useGetData";
-import { useTranslations } from "next-intl";
 import { ExerciseTableSectionWrap } from "./style";
 
+const COLUMNS: ITableColumn<ExerciseType>[] = [
+  {
+    label: "Name",
+    render: (row) => row.name,
+  },
+  {
+    label: "Count",
+    render: (row) => row.count,
+  },
+  {
+    label: "Weight",
+    render: (row) => row.weight,
+  },
+  {
+    label: "Minimum Count",
+    render: (row) => row.minCount,
+  },
+  {
+    label: "Maximum Count",
+    render: (row) => row.maxCount,
+  },
+  {
+    label: "Count Up",
+    render: (row) => row.countUp,
+  },
+  {
+    label: "Weight",
+    render: (row) => row.weightUp,
+  },
+];
+
 const ExerciseTableSection = () => {
-  const t = useTranslations("Global.TableHeaders");
-  const { data, isLoading, refetch } =
-    useGetData<ExerciseType[]>("exercises/users");
+  const { data, isLoading } = useGetData<ExerciseType[]>("exercises/users");
 
   if (isLoading) return <Loader $marginTop="10rem" />;
 
@@ -23,11 +50,9 @@ const ExerciseTableSection = () => {
   return (
     <ExerciseTableSectionWrap>
       <Table
-        items={sortedData}
-        headersTitle={exerciseTableHeaders}
-        navigationColumn={t("Management")}
-        refetch={refetch}
-        navigationRow={TableExerciseNavigation}
+        columns={COLUMNS}
+        data={sortedData}
+        rowActions={(row) => <TableExerciseNavigation item={row} />}
       />
     </ExerciseTableSectionWrap>
   );

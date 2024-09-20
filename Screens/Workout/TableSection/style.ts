@@ -7,6 +7,9 @@ export const TableSectionWrap = styled.div`
   margin-inline: auto;
   overflow-x: auto;
   max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 
 export const NoWorkoutTitle = styled.p`

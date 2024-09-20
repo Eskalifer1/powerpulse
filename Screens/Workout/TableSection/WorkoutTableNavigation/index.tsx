@@ -7,6 +7,7 @@ import Dialog from "@/uiKit/Popup/Dialog";
 import Modal from "@/uiKit/Popup/Modal";
 import { handleClose } from "@/utils/functions/handleClose";
 import { useApiData } from "@/utils/hooks/useApiData";
+import { useInvalidateQueries } from "@/utils/hooks/useGetData";
 import { useTranslations } from "next-intl";
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import { TableWorkoutNavigationBiPlusCircle } from "../TableWorkoutRowNavigation/style";
@@ -18,37 +19,31 @@ import {
 
 interface PropsType {
   id: string;
-  refetch: () => void;
   item: WorkoutType;
   setIsDisabled: Dispatch<SetStateAction<string | null>>;
 }
 
-const WorkoutTableNavigation: FC<PropsType> = ({
-  id,
-  refetch,
-  item,
-  setIsDisabled,
-}) => {
+const WorkoutTableNavigation: FC<PropsType> = ({ id, item, setIsDisabled }) => {
   const [isOpened, setIsOpened] = useState(false);
   const [modalIsOpened, setModalIsOpened] = useState(false);
+  const invalidateData = useInvalidateQueries();
 
   const t = useTranslations("Global.Dialogs");
   const fetchData = useApiData();
 
   const handleDelete = async () => {
     await fetchData(`exercises/users/training/${id}`, "DELETE", { id });
-    refetch();
+    invalidateData("exercises/users/training");
     setIsOpened(false);
   };
 
   const handleUpdateWorkout = async () => {
     setIsDisabled(id);
-    const value = await fetchData("exercises/updateExercises", "PATCH", {
+    await fetchData("exercises/updateExercises", "PATCH", {
       trainingId: id,
     });
     setIsDisabled(null);
-    console.log(value);
-    refetch();
+    invalidateData("exercises/users/training");
   };
 
   return (
@@ -89,8 +84,8 @@ const WorkoutTableNavigation: FC<PropsType> = ({
       <Modal isOpened={modalIsOpened} onCLose={handleClose(setModalIsOpened)}>
         <h2>{t("Edit")}</h2>
         <EditWorkoutModal
-          refetch={refetch}
           initialData={item}
+          onSubmit={() => invalidateData("exercises/users/training")}
           onClose={handleClose(setModalIsOpened)}
         />
       </Modal>

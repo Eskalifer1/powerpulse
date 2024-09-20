@@ -1,23 +1,27 @@
 "use client";
 
-import TableWithTitle from "@/components/TableWithTitle";
+import Table, { ITableColumn } from "@/components/TableT";
+import { ExerciseType } from "@/types/Exercise";
 import { WorkoutType } from "@/types/Workout";
 import { Loader } from "@/uiKit/Loader/style";
-import { workoutTableHeaders } from "@/utils/consts/exerciseTableHeaders";
 import { useGetData } from "@/utils/hooks/useGetData";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { NoWorkoutTitle, TableSectionWrap } from "./style";
 import TableWorkoutRowNavigation from "./TableWorkoutRowNavigation";
 import WorkoutTableNavigation from "./WorkoutTableNavigation";
-import { NoWorkoutTitle, TableSectionWrap } from "./style";
+
+const COLUMNS: ITableColumn<ExerciseType>[] = [
+  { label: "Name", render: (row) => row.name },
+  { label: "Count", render: (row) => row.count },
+  { label: "Weight", render: (row) => row.weight },
+];
 
 const TableSection = () => {
   const t = useTranslations("WorkoutPage");
-  const {
-    data = [],
-    refetch,
-    isLoading,
-  } = useGetData<WorkoutType[]>("exercises/users/training");
+  const { data = [], isLoading } = useGetData<WorkoutType[]>(
+    "exercises/users/training"
+  );
   const [isDisabled, setIsDisabled] = useState<string | null>(null);
 
   if (isLoading) return <Loader />;
@@ -28,23 +32,25 @@ const TableSection = () => {
   return (
     <TableSectionWrap>
       {data?.map((training) => (
-        <TableWithTitle
+        <Table
+          columns={COLUMNS}
           title={training.name}
-          items={training.exercisesId}
-          refetch={refetch}
-          headersTitle={workoutTableHeaders}
-          navigationColumn={t("AdditionalColumn")}
-          navigationRow={TableWorkoutRowNavigation}
-          isDisabled={isDisabled === training._id}
-          globalNavigation={
+          data={training.exercisesId}
+          isLoading={isLoading}
+          rowActions={(row, setIsDisabled) => (
+            <TableWorkoutRowNavigation
+              item={row}
+              setDisabledRow={setIsDisabled}
+            />
+          )}
+          disabledTable={isDisabled === training._id}
+          actions={
             <WorkoutTableNavigation
               id={training._id}
-              refetch={refetch}
               item={training}
               setIsDisabled={setIsDisabled}
             />
           }
-          key={training._id}
         />
       ))}
     </TableSectionWrap>

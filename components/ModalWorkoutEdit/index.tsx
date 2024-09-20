@@ -10,15 +10,19 @@ import CreateWorkoutForm from "../Forms/CreateWorkout";
 
 type PropsType = {
   initialData: WorkoutType;
-  refetch: () => void;
+  onSubmit: () => void;
   onClose: () => void;
 };
 
-const EditWorkoutModal: FC<PropsType> = ({ initialData, refetch, onClose }) => {
+const EditWorkoutModal: FC<PropsType> = ({
+  initialData,
+  onSubmit,
+  onClose,
+}) => {
   const t = useTranslations("CreateWorkoutPage");
   const updateWorkoutFunction = useApiData();
 
-  const onSuccess = async (data: WorkoutType) => {
+  const handleSubmit = async (data: WorkoutType) => {
     const dataLog = await updateWorkoutFunction(
       "exercises/updateTraining",
       "PATCH",
@@ -31,12 +35,12 @@ const EditWorkoutModal: FC<PropsType> = ({ initialData, refetch, onClose }) => {
       t("Notification.Edit")
     );
     onClose();
-    refetch();
+    onSubmit();
   };
 
   return (
     <CreateWorkoutForm
-      onSubmit={onSuccess}
+      onSubmit={handleSubmit}
       defaultValues={{
         ...initialData,
         // @ts-ignore

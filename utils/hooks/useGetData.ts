@@ -1,6 +1,6 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { useApiData } from "./useApiData";
@@ -24,7 +24,7 @@ export const useGetData = <T>(url: string): FetchResult<T> => {
       return response.data;
     },
     {
-      enabled: session !== undefined, // Fetch data only when session is available
+      enabled: session !== undefined,
       onError: () => {
         toast.error("Something went wrong");
       },
@@ -32,4 +32,10 @@ export const useGetData = <T>(url: string): FetchResult<T> => {
   );
 
   return { data, isLoading, isError, isFetching, refetch };
+};
+
+export const useInvalidateQueries = () => {
+  const queryClient = useQueryClient();
+
+  return (url: string) => queryClient.invalidateQueries(["data", url]);
 };
