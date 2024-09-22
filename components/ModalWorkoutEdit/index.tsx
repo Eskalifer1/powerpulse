@@ -1,6 +1,7 @@
 "use client";
 
 import { WorkoutType } from "@/types/Workout";
+import Modal from "@/uiKit/Popup/Modal";
 import { ResponseEnum } from "@/utils/enum/ResponseStatus";
 import { statusManageFunction } from "@/utils/functions/StatusManage";
 import { useApiData } from "@/utils/hooks/useApiData";
@@ -12,14 +13,16 @@ type PropsType = {
   initialData: WorkoutType;
   onSubmit: () => void;
   onClose: () => void;
+  isOpened: boolean;
 };
 
 const EditWorkoutModal: FC<PropsType> = ({
   initialData,
   onSubmit,
   onClose,
+  isOpened,
 }) => {
-  const t = useTranslations("CreateWorkoutPage");
+  const t = useTranslations();
   const updateWorkoutFunction = useApiData();
 
   const handleSubmit = async (data: WorkoutType) => {
@@ -39,17 +42,20 @@ const EditWorkoutModal: FC<PropsType> = ({
   };
 
   return (
-    <CreateWorkoutForm
-      onSubmit={handleSubmit}
-      defaultValues={{
-        ...initialData,
-        // @ts-ignore
-        exercisesId: initialData.exercisesId.map((item) => item._id),
-      }}
-      cancelButtonText={t("Buttons.Close")}
-      submitButtonText={t("Buttons.Edit")}
-      onCancel={onClose}
-    />
+    <Modal isOpened={isOpened} onCLose={onClose}>
+      <h2>{t("Global.Dialogs.Edit")}</h2>
+      <CreateWorkoutForm
+        onSubmit={handleSubmit}
+        defaultValues={{
+          ...initialData,
+          // @ts-ignore
+          exercisesId: initialData.exercisesId.map((item) => item._id),
+        }}
+        cancelButtonText={t("CreateWorkoutPage.Buttons.Close")}
+        submitButtonText={t("CreateWorkoutPage.Buttons.Edit")}
+        onCancel={onClose}
+      />
+    </Modal>
   );
 };
 

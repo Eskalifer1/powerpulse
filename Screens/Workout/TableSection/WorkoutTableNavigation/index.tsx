@@ -1,20 +1,18 @@
 "use client";
 
-import Dialog from "@/components/Confirmation/Dialog";
+import useConfirmation from "@/components/Confirmation/useConfirmation";
 import EditWorkoutModal from "@/components/ModalWorkoutEdit";
 import { DefaultButtonFlex } from "@/styles/DefaultButtonFlex";
 import { WorkoutType } from "@/types/Workout";
-import Modal from "@/uiKit/Popup/Modal";
 import { handleClose } from "@/utils/functions/handleClose";
 import { useApiData } from "@/utils/hooks/useApiData";
 import { useInvalidateQueries } from "@/utils/hooks/useGetData";
-import { useTranslations } from "next-intl";
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import { TableWorkoutNavigationBiPlusCircle } from "../TableWorkoutRowNavigation/style";
 import {
-    TableWorkoutNavigationBiEditAlt,
-    TableWorkoutNavigationBiTrash,
-    TableWorkoutNavigationButtonsWrap,
+  TableWorkoutNavigationBiEditAlt,
+  TableWorkoutNavigationBiTrash,
+  TableWorkoutNavigationButtonsWrap,
 } from "./style";
 
 interface PropsType {
@@ -24,17 +22,19 @@ interface PropsType {
 }
 
 const WorkoutTableNavigation: FC<PropsType> = ({ id, item, setIsDisabled }) => {
-  const [isOpened, setIsOpened] = useState(false);
   const [modalIsOpened, setModalIsOpened] = useState(false);
   const invalidateData = useInvalidateQueries();
+  const confirm = useConfirmation();
 
-  const t = useTranslations("Global.Dialogs");
   const fetchData = useApiData();
 
   const handleDelete = async () => {
-    await fetchData(`exercises/users/training/${id}`, "DELETE", { id });
-    invalidateData("exercises/users/training");
-    setIsOpened(false);
+    confirm({
+      resolve: async () => {
+        await fetchData(`exercises/users/training/${id}`, "DELETE", { id });
+        invalidateData("exercises/users/training");
+      },
+    });
   };
 
   const handleUpdateWorkout = async () => {
@@ -63,32 +63,16 @@ const WorkoutTableNavigation: FC<PropsType> = ({ id, item, setIsDisabled }) => {
         >
           <TableWorkoutNavigationBiEditAlt />
         </DefaultButtonFlex>
-        <DefaultButtonFlex
-          $size="md"
-          $type="danger"
-          onClick={() => setIsOpened((prev) => !prev)}
-        >
+        <DefaultButtonFlex $size="md" $type="danger" onClick={handleDelete}>
           <TableWorkoutNavigationBiTrash />
         </DefaultButtonFlex>
       </TableWorkoutNavigationButtonsWrap>
-      <Dialog
-        isOpened={isOpened}
-        primaryButtonText={t("Delete")}
-        primaryButtonOnClick={handleDelete}
-        onCLose={handleClose(setIsOpened)}
-        title={t("Title")}
-        description={t("Description")}
-        secondaryButtonText={t("Close")}
-        secondaryButtonOnClick={handleClose(setIsOpened)}
+      <EditWorkoutModal
+        isOpened={modalIsOpened}
+        initialData={item}
+        onSubmit={() => invalidateData("exercises/users/training")}
+        onClose={handleClose(setModalIsOpened)}
       />
-      <Modal isOpened={modalIsOpened} onCLose={handleClose(setModalIsOpened)}>
-        <h2>{t("Edit")}</h2>
-        <EditWorkoutModal
-          initialData={item}
-          onSubmit={() => invalidateData("exercises/users/training")}
-          onClose={handleClose(setModalIsOpened)}
-        />
-      </Modal>
     </>
   );
 };

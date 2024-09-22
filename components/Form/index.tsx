@@ -43,14 +43,12 @@ function Form<T extends FieldValues>({
     ...formOptions,
   });
 
-  const { handleSubmit, reset, getValues } = methods;
+  const { handleSubmit, reset } = methods;
 
   const onFormSubmit = (data: T) => {
     onSubmit(data);
     if (resetOnSubmit) reset();
   };
-
-  console.log(getValues(), "values");
 
   return (
     <FormProvider {...methods}>
