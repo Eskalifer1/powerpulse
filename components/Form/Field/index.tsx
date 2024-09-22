@@ -1,7 +1,7 @@
 "use client";
 
 import { ToolTip, ToolTipProps } from "@/uiKit/ToolTip";
-import { useTranslations } from "next-intl";
+import { MessageKeys, useTranslations } from "next-intl";
 import { ComponentProps } from "react";
 import { useFormContext } from "react-hook-form";
 import { Input, InputBlock, InputErrorText, Label } from "./styled";
@@ -30,7 +30,9 @@ function FormField({ label, tooltipProps, name, type, ...props }: PropsType) {
         {...props}
       />
       {errors?.[name] && (
-        <InputErrorText>{t(errors[name].message)}</InputErrorText>
+        <InputErrorText>
+          {t(errors[name]?.message as MessageKeys<any, any>)}
+        </InputErrorText>
       )}
     </InputBlock>
   );

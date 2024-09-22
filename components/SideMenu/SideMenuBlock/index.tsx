@@ -15,7 +15,7 @@ interface PropsType {
 }
 
 const SideMenuBlock: FC<PropsType> = ({ items }) => {
-  const t = useTranslations("NavBar");
+  const t = useTranslations();
 
   return (
     <SideMenuBlockWrap>

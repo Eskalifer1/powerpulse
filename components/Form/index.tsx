@@ -37,9 +37,7 @@ function Form<T extends FieldValues>({
 }: FormProps<T>) {
   const methods = useForm<T>({
     defaultValues,
-    ...(validationSchema && {
-      resolver: useYupValidationResolver(validationSchema),
-    }),
+    resolver: useYupValidationResolver(validationSchema),
     ...formOptions,
   });
 

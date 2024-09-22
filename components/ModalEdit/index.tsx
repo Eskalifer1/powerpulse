@@ -37,7 +37,7 @@ const EditExercisesModal: FC<PropsType> = ({
     statusManageFunction(
       dataLog.status as number,
       ResponseEnum.SUCCESS,
-      t("Notification.Success")
+      t("ExercisesCreatePage.Notification.Success")
     );
     onClose();
     onSubmit();

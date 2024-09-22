@@ -35,7 +35,7 @@ const EditWorkoutModal: FC<PropsType> = ({
     statusManageFunction(
       dataLog.status as number,
       ResponseEnum.SUCCESS,
-      t("Notification.Edit")
+      t("CreateWorkoutPage.Notification.Edit")
     );
     onClose();
     onSubmit();

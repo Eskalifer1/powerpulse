@@ -1,15 +1,17 @@
-import { createSharedPathnamesNavigation } from 'next-intl/navigation';
-import { defineRouting } from 'next-intl/routing';
- 
+import { useTranslations } from "next-intl";
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
+import { defineRouting } from "next-intl/routing";
+
 export const routing = defineRouting({
-  // A list of all locales that are supported
-  locales: ['en', 'uk'],
- 
-  // Used when no locale matches
-  defaultLocale: 'en'
+  locales: ["en", "uk"],
+  defaultLocale: "en",
 });
- 
-// Lightweight wrappers around Next.js' navigation APIs
-// that will consider the routing configuration
-export const {Link, redirect, usePathname, useRouter} =
+
+export type MessageKeys = Parameters<
+  ReturnType<typeof useTranslations<never>>
+>[0];
+
+export type TFunction = ReturnType<typeof useTranslations<never>>;
+
+export const { Link, redirect, usePathname, useRouter } =
   createSharedPathnamesNavigation(routing);
