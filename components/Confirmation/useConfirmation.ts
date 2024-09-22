@@ -1,10 +1,9 @@
 "use client";
 
 import { useContext } from "react";
-
 import {
-	ConfirmationContext,
-	IConfirmationProps,
+  ConfirmationContext,
+  IConfirmationProps,
 } from "./ConfirmationProvider";
 
 export default function useConfirmation() {
@@ -19,15 +18,23 @@ export default function useConfirmation() {
   const { showConfirmation, hideConfirmation } = context;
 
   return function confirm(props?: Partial<IConfirmationProps>) {
+    const { resolve: propsResolve, ...otherProps } = props || {};
     return new Promise((resolve, reject) => {
       showConfirmation({
-        resolve: resolve,
+        resolve: async (value) => {
+          if (propsResolve) {
+            await propsResolve(value);
+          }
+          resolve(value);
+        },
         reject,
-        ...props,
+        ...otherProps,
         open: true,
       });
-    }).finally(() => {
-      hideConfirmation();
-    });
+    })
+      .catch(() => {})
+      .finally(() => {
+        hideConfirmation();
+      });
   };
 }

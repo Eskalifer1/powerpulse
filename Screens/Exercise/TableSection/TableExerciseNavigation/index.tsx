@@ -7,8 +7,6 @@ import { ExerciseType } from "@/types/Exercise";
 import { handleClose } from "@/utils/functions/handleClose";
 import { useApiData } from "@/utils/hooks/useApiData";
 import { useInvalidateQueries } from "@/utils/hooks/useGetData";
-import { useTranslations } from "next-intl";
-import dynamic from "next/dynamic";
 import { FC, useState } from "react";
 import {
   TableExerciseNavigationBiEditAlt,
@@ -21,27 +19,21 @@ interface PropsType {
   refetch?: () => void;
 }
 
-const Dialog = dynamic(() => import("@/components/Confirmation/Dialog"));
-const Modal = dynamic(() => import("@/uiKit/Popup/Modal"));
-
 const TableExerciseNavigation: FC<PropsType> = ({ item }) => {
   const [modalIsOpened, modalSetIsOpened] = useState(false);
-  const t = useTranslations("Global.Dialogs");
   const fetchData = useApiData();
   const invalidateData = useInvalidateQueries();
   const confirm = useConfirmation();
 
   const handleDelete = async () => {
-    confirm()
-      .then(async () => {
+    await confirm({
+      resolve: async () => {
         await fetchData(`exercises/deleteExercise/${item._id}`, "DELETE", {
           id: item._id,
         });
         invalidateData("exercises/users");
-      })
-      .catch((e) => {
-        console.error(e);
-      });
+      },
+    });
   };
 
   return (
@@ -58,14 +50,12 @@ const TableExerciseNavigation: FC<PropsType> = ({ item }) => {
           <TableExerciseNavigationBiEditAlt />
         </DefaultButtonFlex>
       </TableExerciseNavigationButtonWrap>
-      <Modal onCLose={handleClose(modalSetIsOpened)} isOpened={modalIsOpened}>
-        <h3>{t("Edit")}</h3>
-        <EditExercisesModal
-          initialData={item}
-          onClose={handleClose(modalSetIsOpened)}
-          onSubmit={() => invalidateData("exercises/users")}
-        />
-      </Modal>
+      <EditExercisesModal
+        isOpened={modalIsOpened}
+        initialData={item}
+        onClose={handleClose(modalSetIsOpened)}
+        onSubmit={() => invalidateData("exercises/users")}
+      />
     </>
   );
 };

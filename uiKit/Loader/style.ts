@@ -1,19 +1,16 @@
 "use client";
 
-import { MarginBlockProps } from "@/types/Margin";
 import { styled } from "styled-components";
 
-interface PropsType extends MarginBlockProps {
+interface PropsType {
   $color?: string;
   $size?: string;
 }
 
 export const Loader = styled.div<PropsType>`
-  margin-block-start: ${(props) => props.$marginTop || "2rem"};
-  margin-block-end: ${(props) => props.$marginBottom || "2rem"};
   margin-inline: auto;
-  width: ${(props) => props.$color || "3rem"};
-  height: ${(props) => props.$color || "3rem"};
+  width: ${(props) => props.$size || "3rem"};
+  height: ${(props) => props.$size || "3rem"};
   border: 5px solid ${(props) => props.$color || "var(--text-color)"};
   border-bottom-color: transparent;
   border-radius: 50%;

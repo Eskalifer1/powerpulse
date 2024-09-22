@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 import Async from "../Async";
 import {
-    StyledTable,
-    StyledTableHeader,
-    StyledTableTd,
-    StyledTableTr,
-    StyledTableWrap,
-    TableTh,
+  StyledTable,
+  StyledTableHeader,
+  StyledTableTd,
+  StyledTableTr,
+  StyledTableWrap,
+  TableTh,
 } from "./style";
 import TableRow from "./TableRow";
 
@@ -52,8 +52,8 @@ function Table({
         <StyledTable>
           <thead>
             <StyledTableTr>
-              {columns.map((column: ITableColumn) => (
-                <TableTh key={column.label}>{column.label}</TableTh>
+              {columns.map((column: ITableColumn, index) => (
+                <TableTh key={index}>{column.label}</TableTh>
               ))}
               {rowActions && <TableTh>Action</TableTh>}
             </StyledTableTr>
@@ -61,7 +61,12 @@ function Table({
           <tbody>
             {data?.length ? (
               data.map((row) => (
-                <TableRow columns={columns} row={row} rowActions={rowActions} />
+                <TableRow
+                  key={row._id}
+                  columns={columns}
+                  row={row}
+                  rowActions={rowActions}
+                />
               ))
             ) : (
               <StyledTableTr>

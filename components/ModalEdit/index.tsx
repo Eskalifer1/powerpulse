@@ -5,21 +5,26 @@ import { ResponseEnum } from "@/utils/enum/ResponseStatus";
 import { statusManageFunction } from "@/utils/functions/StatusManage";
 import { useApiData } from "@/utils/hooks/useApiData";
 import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
 import { FC } from "react";
 import CreateExercisesForm from "../Forms/CreateExercise";
+
+const Modal = dynamic(() => import("@/uiKit/Popup/Modal"));
 
 type PropsType = {
   initialData: CreateExerciseFormType;
   onSubmit: () => void;
   onClose: () => void;
+  isOpened: boolean;
 };
 
 const EditExercisesModal: FC<PropsType> = ({
   initialData,
   onSubmit,
   onClose,
+  isOpened,
 }) => {
-  const t = useTranslations("ExercisesCreatePage");
+  const t = useTranslations();
   const updateExercise = useApiData();
 
   const onSuccess = async (data: CreateExerciseFormType) => {
@@ -39,13 +44,16 @@ const EditExercisesModal: FC<PropsType> = ({
   };
 
   return (
-    <CreateExercisesForm
-      onSubmit={onSuccess}
-      defaultValues={initialData}
-      cancelButtonText={t("Buttons.Reset")}
-      submitButtonText={t("Buttons.Submit")}
-      onCancel={onClose}
-    />
+    <Modal onCLose={onClose} isOpened={isOpened}>
+      <h3>{t("Global.Dialogs.Edit")}</h3>
+      <CreateExercisesForm
+        onSubmit={onSuccess}
+        defaultValues={initialData}
+        cancelButtonText={t("ExercisesCreatePage.Buttons.Close")}
+        submitButtonText={t("ExercisesCreatePage.Buttons.Submit")}
+        onCancel={onClose}
+      />
+    </Modal>
   );
 };
 

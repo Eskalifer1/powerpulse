@@ -1,8 +1,9 @@
 "use client";
 
 import { DefaultButton } from "@/uiKit/button/style";
+import { Loader } from "@/uiKit/Loader/style";
 import { useTranslations } from "next-intl";
-import { FC } from "react";
+import { FC, useState } from "react";
 import OverlayingPopUp from "../../../uiKit/Popup/OverlayingPopUp";
 import { IConfirmationProps } from "../ConfirmationProvider";
 import {
@@ -28,6 +29,18 @@ const Dialog: FC<PropsType> = ({
   secondaryButtonText,
 }) => {
   const t = useTranslations("Global.Dialogs");
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleResolve = async () => {
+    setIsLoading(true);
+    try {
+      await resolve();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <OverlayingPopUp onClose={reject} isOpened={open}>
       <DialogWrap>
@@ -36,12 +49,30 @@ const Dialog: FC<PropsType> = ({
         </DialogHeaderWrap>
         <DialogDescription>{text || t("Description")}</DialogDescription>
         <DialogButtonsWrap>
-          <DefaultButton $size="lg" $type="primary" onClick={reject}>
-            {secondaryButtonText || t("Close")}
+          <DefaultButton
+            $size="lg"
+            $type="primary"
+            onClick={reject}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <Loader $size="0.8rem" />
+            ) : (
+              secondaryButtonText || t("Close")
+            )}
           </DefaultButton>
 
-          <DefaultButton $size="lg" $type="danger" onClick={resolve}>
-            {primaryButtonText || t("Delete")}
+          <DefaultButton
+            $size="lg"
+            $type="danger"
+            onClick={handleResolve}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <Loader $size="0.8rem" />
+            ) : (
+              primaryButtonText || t("Delete")
+            )}
           </DefaultButton>
         </DialogButtonsWrap>
       </DialogWrap>

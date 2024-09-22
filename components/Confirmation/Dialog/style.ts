@@ -29,9 +29,10 @@ export const DialogButtonsWrap = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin-top: auto;
+  gap: 16px;
 
-  & :not(:first-child) {
-    margin-inline-start: 1rem;
+  & button {
+    flex: 1;
   }
 `;
 

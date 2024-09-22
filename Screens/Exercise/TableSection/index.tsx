@@ -41,7 +41,7 @@ const COLUMNS: ITableColumn<ExerciseType>[] = [
 const ExerciseTableSection = () => {
   const { data, isLoading } = useGetData<ExerciseType[]>("exercises/users");
 
-  if (isLoading) return <Loader $marginTop="10rem" />;
+  if (isLoading) return <Loader />;
 
   const sortedData = [...(data || [])].sort((a, b) => {
     return a.name.localeCompare(b.name);
