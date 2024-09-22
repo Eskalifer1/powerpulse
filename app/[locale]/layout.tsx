@@ -1,3 +1,4 @@
+import ConfirmationProvider from "@/components/Confirmation/ConfirmationProvider";
 import Footer from "@/components/Footer";
 import { SideMenu } from "@/components/SideMenu";
 import { UserInfo } from "@/components/SideMenu/UserInfo";
@@ -46,15 +47,17 @@ export default async function RootLayout({
         <QueryProvider>
           <StyledComponentsRegistry>
             <NextIntlClientProvider messages={messages}>
-              <body className={poppins.className}>
-                <SideMenu>
-                  <UserInfo />
-                </SideMenu>
-                {children}
-                <Spacer $size="2rem" />
-                <Footer />
-                <Toaster position="top-center" />
-              </body>
+              <ConfirmationProvider>
+                <body className={poppins.className}>
+                  <SideMenu>
+                    <UserInfo />
+                  </SideMenu>
+                  {children}
+                  <Spacer $size="2rem" />
+                  <Footer />
+                  <Toaster position="top-center" />
+                </body>
+              </ConfirmationProvider>
             </NextIntlClientProvider>
           </StyledComponentsRegistry>
         </QueryProvider>

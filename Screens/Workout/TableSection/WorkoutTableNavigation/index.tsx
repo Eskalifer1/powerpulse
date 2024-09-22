@@ -1,9 +1,9 @@
 "use client";
 
+import Dialog from "@/components/Confirmation/Dialog";
 import EditWorkoutModal from "@/components/ModalWorkoutEdit";
 import { DefaultButtonFlex } from "@/styles/DefaultButtonFlex";
 import { WorkoutType } from "@/types/Workout";
-import Dialog from "@/uiKit/Popup/Dialog";
 import Modal from "@/uiKit/Popup/Modal";
 import { handleClose } from "@/utils/functions/handleClose";
 import { useApiData } from "@/utils/hooks/useApiData";
@@ -12,9 +12,9 @@ import { useTranslations } from "next-intl";
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import { TableWorkoutNavigationBiPlusCircle } from "../TableWorkoutRowNavigation/style";
 import {
-  TableWorkoutNavigationBiEditAlt,
-  TableWorkoutNavigationBiTrash,
-  TableWorkoutNavigationButtonsWrap,
+    TableWorkoutNavigationBiEditAlt,
+    TableWorkoutNavigationBiTrash,
+    TableWorkoutNavigationButtonsWrap,
 } from "./style";
 
 interface PropsType {

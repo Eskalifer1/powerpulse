@@ -1,5 +1,6 @@
 "use client";
 
+import useConfirmation from "@/components/Confirmation/useConfirmation";
 import EditExercisesModal from "@/components/ModalEdit";
 import { DefaultButtonFlex } from "@/styles/DefaultButtonFlex";
 import { ExerciseType } from "@/types/Exercise";
@@ -20,33 +21,33 @@ interface PropsType {
   refetch?: () => void;
 }
 
-const Dialog = dynamic(() => import("@/uiKit/Popup/Dialog"));
+const Dialog = dynamic(() => import("@/components/Confirmation/Dialog"));
 const Modal = dynamic(() => import("@/uiKit/Popup/Modal"));
 
 const TableExerciseNavigation: FC<PropsType> = ({ item }) => {
-  const [isOpened, setIsOpened] = useState(false);
   const [modalIsOpened, modalSetIsOpened] = useState(false);
   const t = useTranslations("Global.Dialogs");
   const fetchData = useApiData();
   const invalidateData = useInvalidateQueries();
+  const confirm = useConfirmation();
 
   const handleDelete = async () => {
-    await fetchData(`exercises/deleteExercise/${item._id}`, "DELETE", {
-      id: item._id,
-    });
-
-    invalidateData("exercises/users");
-    setIsOpened(false);
+    confirm()
+      .then(async () => {
+        await fetchData(`exercises/deleteExercise/${item._id}`, "DELETE", {
+          id: item._id,
+        });
+        invalidateData("exercises/users");
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
 
   return (
     <>
       <TableExerciseNavigationButtonWrap>
-        <DefaultButtonFlex
-          $type="danger"
-          $size="sm"
-          onClick={() => setIsOpened((prev) => !prev)}
-        >
+        <DefaultButtonFlex $type="danger" $size="sm" onClick={handleDelete}>
           <TableExerciseNavigationBiTrash />
         </DefaultButtonFlex>
         <DefaultButtonFlex
@@ -57,16 +58,6 @@ const TableExerciseNavigation: FC<PropsType> = ({ item }) => {
           <TableExerciseNavigationBiEditAlt />
         </DefaultButtonFlex>
       </TableExerciseNavigationButtonWrap>
-      <Dialog
-        isOpened={isOpened}
-        primaryButtonText={t("Delete")}
-        primaryButtonOnClick={handleDelete}
-        onCLose={handleClose(setIsOpened)}
-        title={t("Title")}
-        description={t("Description")}
-        secondaryButtonText={t("Close")}
-        secondaryButtonOnClick={handleClose(setIsOpened)}
-      />
       <Modal onCLose={handleClose(modalSetIsOpened)} isOpened={modalIsOpened}>
         <h3>{t("Edit")}</h3>
         <EditExercisesModal

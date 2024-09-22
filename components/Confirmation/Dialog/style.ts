@@ -40,3 +40,13 @@ export const DialogDescription = styled.p`
   font-size: var(--fs-md);
   margin-block: auto;
 `;
+
+export const DialogHeaderWrap = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const DialogHeaderTitle = styled.h4`
+  margin-block: auto;
+  font-size: var(--fs-lg);
+`;
