@@ -8,6 +8,7 @@ import Credentials from "next-auth/providers/credentials";
 import { signOut } from "next-auth/react";
 
 async function refreshToken(token: JWT): Promise<any> {
+  console.time("Request time");
   const res = await instance.post<TokenType>(
     "auth/login/access-token",
     {},
@@ -18,8 +19,7 @@ async function refreshToken(token: JWT): Promise<any> {
     }
   );
 
-  console.log("refreshed");
-  console.log(res.data);
+  console.timeEnd("Request time");
   return res.data;
 }
 
@@ -38,7 +38,7 @@ export const authConfig: AuthOptions = {
           password: credentials.password,
         })) as LoginServiceResponse;
 
-        console.log(userData, "userData")
+        console.log(userData, "userData");
 
         if (userData.status !== 201) return null;
 
