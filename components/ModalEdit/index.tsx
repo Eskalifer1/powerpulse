@@ -50,7 +50,7 @@ const EditExercisesModal: FC<PropsType> = ({
         onSubmit={onSuccess}
         defaultValues={initialData}
         cancelButtonText={t("ExercisesCreatePage.Buttons.Close")}
-        submitButtonText={t("ExercisesCreatePage.Buttons.Submit")}
+        submitButtonText={t("ExercisesCreatePage.Buttons.Edit")}
         onCancel={onClose}
       />
     </Modal>
