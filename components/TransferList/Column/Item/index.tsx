@@ -10,6 +10,8 @@ type ItemType = {
   [key: string]: any;
 };
 
+const Draggable1: any = Draggable;
+
 type PropsType<T extends ItemType> = {
   item: T;
   index: number;
@@ -24,7 +26,7 @@ function TransferListItem<T extends ItemType>({
   getItemId,
 }: PropsType<T>) {
   return (
-    <Draggable draggableId={getItemId(item)} index={index}>
+    <Draggable1 draggableId={getItemId(item)} index={index}>
       {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) =>
         (
           <TransferListItemWrap
@@ -37,7 +39,7 @@ function TransferListItem<T extends ItemType>({
           </TransferListItemWrap>
         ) as any
       }
-    </Draggable>
+    </Draggable1>
   );
 }
 
