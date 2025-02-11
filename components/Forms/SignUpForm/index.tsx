@@ -33,11 +33,13 @@ const SignUpForm = () => {
         name="password"
         label={t("Placeholders.Password")}
         placeholder={t("Placeholders.Password")}
+        type="password"
       />
       <FormField
         name="confirmPassword"
         label={t("Placeholders.ConfirmPassword")}
         placeholder={t("Placeholders.ConfirmPassword")}
+        type="password"
       />
       <SignUpButtonsWrap>
         <DefaultButton $type="primary" $size="md" type="submit">

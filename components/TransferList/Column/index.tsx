@@ -46,7 +46,6 @@ function TransferListColumn<T extends ItemType>({
                   getItemId={getItemId}
                 />
               ))}
-              {provided.placeholder}
             </TransferListColumnDropableWrap>
           ) as any
         }

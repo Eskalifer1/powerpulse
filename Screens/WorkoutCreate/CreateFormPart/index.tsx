@@ -29,8 +29,8 @@ const CreateWorkoutFormPart = () => {
   return (
     <CreateWorkoutForm
       onSubmit={onSuccess}
-      cancelButtonText="Cancel"
-      submitButtonText="Submit"
+      cancelButtonText={t("Buttons.Reset")}
+      submitButtonText={t("Buttons.Submit")}
       resetOnSubmit
     />
   );

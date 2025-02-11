@@ -33,6 +33,7 @@ const TableSection = () => {
     <TableSectionWrap>
       {data?.map((training) => (
         <Table
+          key={training._id}
           columns={COLUMNS}
           title={training.name}
           data={training.exercisesId}

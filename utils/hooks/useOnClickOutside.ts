@@ -4,7 +4,7 @@ import { useLatest } from "./useLatest";
 type ClickHandler = () => void;
 
 export function useOutsideClick(
-  elementRef: RefObject<HTMLElement>,
+  elementRef: RefObject<any>,
   handler: ClickHandler,
   attached = true
 ) {

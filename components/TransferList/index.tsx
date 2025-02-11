@@ -1,8 +1,14 @@
 import { Loader } from "@/uiKit/Loader/style";
-import { DragDropContext } from "react-beautiful-dnd";
+import {
+  DragDropContext as DragDropContext1,
+  DragDropContextProps,
+} from "react-beautiful-dnd";
 import { useFormContext, useWatch } from "react-hook-form";
 import TransferListColumn from "./Column";
 import { TransferListWrap } from "./styled";
+
+export const DragDropContext =
+  DragDropContext1 as React.ComponentClass<DragDropContextProps>;
 
 type ItemType = {
   _id: string;

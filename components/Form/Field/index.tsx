@@ -26,6 +26,7 @@ function FormField({ label, tooltipProps, name, type, ...props }: PropsType) {
         {label}
       </Label>
       <Input
+        type={type}
         {...register(name, type === "number" ? { valueAsNumber: true } : {})}
         {...props}
       />

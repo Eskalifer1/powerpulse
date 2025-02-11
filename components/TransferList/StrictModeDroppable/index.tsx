@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Droppable, DroppableProps } from "react-beautiful-dnd";
+import { Droppable as Droppable1, DroppableProps } from "react-beautiful-dnd";
+
+export const Droppable = Droppable1 as React.ComponentClass<DroppableProps>;
 
 export const StrictModeDroppable = ({ children, ...props }: DroppableProps) => {
   const [enabled, setEnabled] = useState(false);
