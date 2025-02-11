@@ -1,16 +1,17 @@
 import {
-  Draggable,
+  Draggable as Draggable1,
+  DraggableProps,
   DraggableProvided,
   DraggableStateSnapshot,
 } from "react-beautiful-dnd";
 import { TransferListItemText, TransferListItemWrap } from "./styled";
 
+export const Draggable = Draggable1 as React.ComponentClass<DraggableProps>;
+
 type ItemType = {
   _id: string;
   [key: string]: any;
 };
-
-const Draggable1: any = Draggable;
 
 type PropsType<T extends ItemType> = {
   item: T;
@@ -26,7 +27,7 @@ function TransferListItem<T extends ItemType>({
   getItemId,
 }: PropsType<T>) {
   return (
-    <Draggable1 draggableId={getItemId(item)} index={index}>
+    <Draggable draggableId={getItemId(item)} index={index}>
       {(provided: DraggableProvided, snapshot: DraggableStateSnapshot) =>
         (
           <TransferListItemWrap
@@ -39,7 +40,7 @@ function TransferListItem<T extends ItemType>({
           </TransferListItemWrap>
         ) as any
       }
-    </Draggable1>
+    </Draggable>
   );
 }
 
