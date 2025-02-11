@@ -1,48 +1,42 @@
 "use client";
 
+import Form from "@/components/Form";
 import FormField from "@/components/Form/Field";
 import { AuthService } from "@/services/Auth";
-import { StyledForm } from "@/styles/StyledForm";
 import { SignUpFormType } from "@/types/Forms/SignUpForm";
 import { DefaultButton } from "@/uiKit/button/style";
-import useYupValidationResolver from "@/utils/hooks/useYupResolver";
 import { SignUpScheme } from "@/utils/schemas/SignUpScheme";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
-import { useForm } from "react-hook-form";
 import { SignUpButtonsWrap, SignuUpButtonDivider } from "./style";
 
 const SignUpForm = () => {
   const t = useTranslations("SignUpForm");
 
-  const { handleSubmit, reset } = useForm<SignUpFormType>({
-    resolver: useYupValidationResolver(SignUpScheme),
-  });
   const onSubmit = async (data: SignUpFormType) => {
-    AuthService.signUp(data);
-    reset();
+    await AuthService.signUp(data);
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={onSubmit} validationSchema={SignUpScheme} resetOnSubmit>
       <FormField
         name="name"
-        label="Name"
+        label={t("Placeholders.Name")}
         placeholder={t("Placeholders.Name")}
       />
       <FormField
         name="email"
-        label="Email"
+        label={t("Placeholders.Email")}
         placeholder={t("Placeholders.Email")}
       />
       <FormField
         name="password"
-        label="password"
+        label={t("Placeholders.Password")}
         placeholder={t("Placeholders.Password")}
       />
       <FormField
         name="confirmPassword"
-        label="confirmPassword"
+        label={t("Placeholders.ConfirmPassword")}
         placeholder={t("Placeholders.ConfirmPassword")}
       />
       <SignUpButtonsWrap>
@@ -59,7 +53,7 @@ const SignUpForm = () => {
           {t("Login")}
         </DefaultButton>
       </SignUpButtonsWrap>
-    </StyledForm>
+    </Form>
   );
 };
 

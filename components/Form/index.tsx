@@ -18,8 +18,8 @@ export interface FormProps<T extends FieldValues>
   formOptions?: UseFormProps<T>;
   resetOnSubmit?: boolean;
   onCancel?: () => void;
-  cancelButtonText: string;
-  submitButtonText: string;
+  cancelButtonText?: string;
+  submitButtonText?: string;
   validationSchema: any;
 }
 
@@ -53,19 +53,23 @@ function Form<T extends FieldValues>({
       <StyledForm onSubmit={handleSubmit(onFormSubmit)} {...props}>
         {children}
         <CreateFormButtonsWrap>
-          <DefaultButton
-            $type="primary"
-            $size="md"
-            type="button"
-            onClick={() => {
-              !!onCancel ? onCancel() : reset();
-            }}
-          >
-            {cancelButtonText}
-          </DefaultButton>
-          <DefaultButton $type="secondary" $size="md" type="submit">
-            {submitButtonText}
-          </DefaultButton>
+          {cancelButtonText && (
+            <DefaultButton
+              $type="primary"
+              $size="md"
+              type="button"
+              onClick={() => {
+                !!onCancel ? onCancel() : reset();
+              }}
+            >
+              {cancelButtonText}
+            </DefaultButton>
+          )}
+          {submitButtonText && (
+            <DefaultButton $type="secondary" $size="md" type="submit">
+              {submitButtonText}
+            </DefaultButton>
+          )}
         </CreateFormButtonsWrap>
       </StyledForm>
     </FormProvider>

@@ -1,48 +1,76 @@
 import * as yup from "yup";
 
 export const CreateExerciseScheme = yup.object({
-  name: yup.string().required("Errors.Required"),
+  name: yup.string().required("ExercisesCreatePage.Errors.Required"),
   weight: yup
     .number()
-    .required("Errors.Required")
-    .typeError("Errors.Number")
-    .test("Positive", "Errors.MoreThanZero", (value) => value > 0),
+    .required("ExercisesCreatePage.Errors.Required")
+    .typeError("ExercisesCreatePage.Errors.Number")
+    .test(
+      "Positive",
+      "ExercisesCreatePage.Errors.MoreThanZero",
+      (value) => value > 0
+    ),
   count: yup
     .number()
-    .required("Errors.Required")
-    .typeError("Errors.Number")
-    .test("count", "Errors.CountError", function (value) {
+    .required("ExercisesCreatePage.Errors.Required")
+    .typeError("ExercisesCreatePage.Errors.Number")
+    .test("count", "ExercisesCreatePage.Errors.CountError", function (value) {
       const maxCount = this.parent.maxCount;
       const minCount = this.parent.minCount;
       return value >= minCount && value <= maxCount;
     })
-    .test("Positive", "Errors.MoreThanZero", (value) => value > 0)
-    .integer("Errors.Integer"),
+    .test(
+      "Positive",
+      "ExercisesCreatePage.Errors.MoreThanZero",
+      (value) => value > 0
+    )
+    .integer("ExercisesCreatePage.Errors.Integer"),
   minCount: yup
     .number()
-    .required("Errors.Required")
-    .typeError("Errors.Number")
-    .test("minCount", "Errors.MinCountMaxCountError", function (value) {
-      const maxCount = this.parent.maxCount; // Access maxCount from the parent object
-      return value <= maxCount - 2;
-    })
-    .test("Positive", "Errors.MoreThanZero", (value) => value > 0)
-    .integer("Errors.Integer"),
+    .required("ExercisesCreatePage.Errors.Required")
+    .typeError("ExercisesCreatePage.Errors.Number")
+    .test(
+      "minCount",
+      "ExercisesCreatePage.Errors.MinCountMaxCountError",
+      function (value) {
+        const maxCount = this.parent.maxCount;
+        return value <= maxCount - 2;
+      }
+    )
+    .test(
+      "Positive",
+      "ExercisesCreatePage.Errors.MoreThanZero",
+      (value) => value > 0
+    )
+    .integer("ExercisesCreatePage.Errors.Integer"),
   maxCount: yup
     .number()
-    .required("Errors.Required")
-    .typeError("Errors.Number")
-    .test("Positive", "Errors.MoreThanZero", (value) => value > 0)
-    .integer("Errors.Integer"),
+    .required("ExercisesCreatePage.Errors.Required")
+    .typeError("ExercisesCreatePage.Errors.Number")
+    .test(
+      "Positive",
+      "ExercisesCreatePage.Errors.MoreThanZero",
+      (value) => value > 0
+    )
+    .integer("ExercisesCreatePage.Errors.Integer"),
   countUp: yup
     .number()
-    .required("Errors.Required")
-    .typeError("Errors.Number")
-    .test("Positive", "Errors.MoreThanZero", (value) => value > 0)
-    .integer("Errors.Integer"),
+    .required("ExercisesCreatePage.Errors.Required")
+    .typeError("ExercisesCreatePage.Errors.Number")
+    .test(
+      "Positive",
+      "ExercisesCreatePage.Errors.MoreThanZero",
+      (value) => value > 0
+    )
+    .integer("ExercisesCreatePage.Errors.Integer"),
   weightUp: yup
     .number()
-    .required("Errors.Required")
-    .typeError("Errors.Number")
-    .test("Positive", "Errors.MoreThanZero", (value) => value > 0),
+    .required("ExercisesCreatePage.Errors.Required")
+    .typeError("ExercisesCreatePage.Errors.Number")
+    .test(
+      "Positive",
+      "ExercisesCreatePage.Errors.MoreThanZero",
+      (value) => value > 0
+    ),
 });
