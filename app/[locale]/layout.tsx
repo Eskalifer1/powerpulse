@@ -54,7 +54,7 @@ export default async function RootLayout({
                   </SideMenu>
                   {children}
                   <Spacer $size="2rem" />
-                  <Footer />
+                  {/* <Footer /> */}
                   <Toaster position="top-center" />
                 </body>
               </ConfirmationProvider>

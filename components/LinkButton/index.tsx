@@ -1,5 +1,5 @@
+import { Link } from "@/i18n/routing";
 import { DefaultButton, DefaultButtonPropsType } from "@/uiKit/button/style";
-import Link from "next/link";
 import { FC, ReactNode } from "react";
 
 interface PropsType extends DefaultButtonPropsType {
